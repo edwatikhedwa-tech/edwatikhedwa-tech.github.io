@@ -164,66 +164,97 @@ const steps = [
   canonicalPath="/"
   jsonLd={jsonLd}
 >
-  <!-- Блок 1: Hero -->
-  <section class="border-b border-slate-200 bg-white py-12 sm:py-16 lg:py-20">
+  <!-- Блок 1: Hero (Editorial Legal Pivot v2) -->
+  <section class="border-b border-[#D6DAE2] bg-[#F7F8FA] py-14 sm:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid items-start gap-10 lg:grid-cols-12">
-        <div class="lg:col-span-7">
-          <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-blue-800">
-            Санкт-Петербург и Ленинградская область
-          </span>
-          <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+      <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+        <div class="hero-animate lg:col-span-7">
+          <h1 class="text-[2.35rem] font-semibold tracking-tight text-[#121519] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.06]">
             Защита брендов, технологий и интеллектуальных активов в Санкт-Петербурге
           </h1>
-          <p class="mt-5 text-lg leading-relaxed text-slate-600">
+
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-[#4E5560] sm:text-lg">
             Регистрируем товарные знаки, патентуем разработки и дизайн, вносим ПО в Реестр Минцифры, оформляем франшизы
-            и защищаем права на маркетплейсах и в суде. Ведём клиентов лично в Санкт-Петербурге, исполняем задачи силами
-            федерального юридического центра BeBrand и аттестованных патентных поверенных РФ.
+            и защищаем права на маркетплейсах и в суде. Ведём клиентов лично в Санкт-Петербурге и Ленинградской области,
+            исполняем задачи силами федерального юридического центра BeBrand и аттестованных патентных поверенных РФ.
           </p>
-          <div class="mt-8 flex flex-wrap items-center gap-4">
+
+          <div class="mt-9 flex flex-wrap items-center gap-4">
             <button
               type="button"
               data-open-check-modal
               command="show-modal"
               commandfor="check-modal"
-              class="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-blue-700 px-6 py-3 text-base font-semibold text-white shadow-xs transition-colors hover:bg-blue-800 cursor-pointer"
+              class="inline-flex min-h-[50px] items-center justify-center rounded-sm bg-[#9E1B1E] px-7 py-3 text-base font-semibold text-white transition-colors hover:bg-[#7E1417] cursor-pointer"
             >
               Проверить знак или задачу
             </button>
             <a
               href="#calculator"
-              class="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-800 transition-colors hover:bg-slate-50 no-underline"
+              class="inline-flex min-h-[50px] items-center justify-center rounded-sm border border-[#121519] bg-white px-6 py-3 text-base font-semibold text-[#121519] transition-colors hover:bg-[#ECEEF2] no-underline"
             >
               Рассчитать пошлины 2026 ↓
             </a>
           </div>
         </div>
 
-        <!-- Правый документальный модуль (AST-02 fallback) -->
-        <aside class="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-7 lg:col-span-5" aria-label="Подтверждённые показатели">
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Подтверждённые факты и квалификация
-          </p>
-          <dl class="mt-5 space-y-5">
-            <div class="border-b border-slate-200 pb-4">
-              <dt class="text-2xl font-extrabold text-blue-700 tabular-nums">Топ-2 в России</dt>
-              <dd class="mt-1 text-sm text-slate-700">
-                По числу зарегистрированных товарных знаков (4 103 свидетельства, доля 5,77%, рейтинг IRPA 2026).
+        <!-- Правый документальный артефакт (без серой заглушки и вложенных скруглений) -->
+        <aside
+          class="hero-animate border border-[#121519] bg-white lg:col-span-5 shadow-[6px_6px_0_0_#D6DAE2]"
+          aria-label="Досье практики BeBrand"
+        >
+          <div class="flex items-center justify-between border-b border-[#121519] bg-[#121519] px-6 py-4 text-white">
+            <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[#ECEEF2]">
+              Досье практики · ФИПС / РФ
+            </span>
+            <span class="text-xs font-medium text-[#E5A9AA] tabular-nums">2026</span>
+          </div>
+
+          <dl class="divide-y divide-[#D6DAE2]">
+            <div class="px-6 py-5">
+              <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
+                <span>01 / Рейтинг IRPA 2026</span>
+                <span class="font-semibold text-[#9E1B1E] tabular-nums normal-case">4 103 свидетельства</span>
+              </dt>
+              <dd class="mt-1.5">
+                <span class="block font-display text-3xl font-semibold text-[#121519] tabular-nums">Топ-2 в России</span>
+                <span class="mt-1 block text-sm text-[#4E5560]">
+                  Доля 5,77% коммерческого сегмента по фактически выданным свидетельствам ФИПС.
+                </span>
               </dd>
             </div>
-            <div class="border-b border-slate-200 pb-4">
-              <dt class="text-2xl font-extrabold text-slate-900 tabular-nums">С 2013 года</dt>
-              <dd class="mt-1 text-sm text-slate-700">
-                Федеральная сеть из более чем 50 представительств и свыше 30 000 клиентов по данным BeBrand.
+
+            <div class="px-6 py-5">
+              <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
+                <span>02 / Федеральный масштаб</span>
+                <span class="font-semibold text-[#121519] tabular-nums normal-case">50+ офисов</span>
+              </dt>
+              <dd class="mt-1.5">
+                <span class="block font-display text-3xl font-semibold text-[#121519] tabular-nums">С 2013 года</span>
+                <span class="mt-1 block text-sm text-[#4E5560]">
+                  Более 30 000 клиентов по России; личная ответственность офиса в Санкт-Петербурге.
+                </span>
               </dd>
             </div>
-            <div>
-              <dt class="text-lg font-bold text-slate-900">Аттестованные поверенные РФ</dt>
-              <dd class="mt-1 text-sm text-slate-700">
-                Профильные руководители практик по товарным знакам, патентам и судам (№ 2149, № 2150, № 2314).
+
+            <div class="px-6 py-5">
+              <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
+                <span>03 / Аттестация Роспатента</span>
+                <span class="font-semibold text-[#121519] tabular-nums normal-case">№ 2149 · 2150 · 2314</span>
+              </dt>
+              <dd class="mt-1.5">
+                <span class="block font-display text-2xl font-semibold text-[#121519]">Патентные поверенные РФ</span>
+                <span class="mt-1 block text-sm text-[#4E5560]">
+                  Узкая специализация по товарным знакам, патентам и судебным спорам в ППС и СИП.
+                </span>
               </dd>
             </div>
           </dl>
+
+          <div class="flex items-center justify-between border-t border-[#D6DAE2] bg-[#ECEEF2] px-6 py-3.5 text-xs font-medium text-[#121519]">
+            <span>Электронный документооборот с ФИПС</span>
+            <span class="font-semibold text-[#9E1B1E]">NDA до старта</span>
+          </div>
         </aside>
       </div>
     </div>
@@ -235,19 +266,19 @@ const steps = [
   </div>
 
   <!-- Блок 3: Реестр услуг -->
-  <section aria-labelledby="catalog-heading" class="bg-white py-14 sm:py-16 border-y border-slate-200">
+  <section aria-labelledby="catalog-heading" class="bg-white py-14 sm:py-16 border-y border-[#D6DAE2]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
-        <h2 id="catalog-heading" class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+        <h2 id="catalog-heading" class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl">
           Направления практики и услуги
         </h2>
-        <p class="mt-3 text-base text-slate-600">
+        <p class="mt-3 text-base text-[#4E5560]">
           Сопровождаем весь цикл работы с нематериальными активами: от проверки чистоты идеи до защиты исключительных прав
           в Палате по патентным спорам и судах.
         </p>
       </div>
 
-      <div tabindex="0" role="region" aria-labelledby="catalog-heading" class="table-wrapper mt-8">
+      <div tabindex="0" role="region" aria-label="Таблица направлений практики и услуг" class="table-wrapper mt-8">
         <table class="data-table data-table--stack">
           <thead>
             <tr>
@@ -261,12 +292,12 @@ const steps = [
           <tbody>
             {servicesCatalog.map((row) => (
               <tr>
-                <th scope="row" class="font-bold text-slate-900">{row.name}</th>
-                <td data-label="Что делаем" class="text-slate-700">{row.desc}</td>
-                <td data-label="Типовой срок" class="whitespace-nowrap text-slate-700">{row.term}</td>
-                <td data-label="Ориентир стоимости" class="font-semibold text-slate-900 tabular-nums">{row.price}</td>
+                <th scope="row" class="font-bold text-[#121519]">{row.name}</th>
+                <td data-label="Что делаем" class="text-[#4E5560]">{row.desc}</td>
+                <td data-label="Типовой срок" class="whitespace-nowrap text-[#4E5560]">{row.term}</td>
+                <td data-label="Ориентир стоимости" class="font-semibold text-[#121519] tabular-nums">{row.price}</td>
                 <td data-label="Страница">
-                  <a href={row.href} class="font-semibold text-blue-700 hover:underline no-underline whitespace-nowrap">
+                  <a href={row.href} class="font-semibold text-[#9E1B1E] hover:underline no-underline whitespace-nowrap">
                     Подробнее →
                   </a>
                 </td>
@@ -276,11 +307,11 @@ const steps = [
         </table>
       </div>
 
-      <div class="mt-4 flex flex-wrap items-center justify-between gap-4 text-sm">
-        <p class="text-slate-500">
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-4 text-sm">
+        <p class="text-[#4E5560]">
           * Указаны федеральные ориентиры стоимости услуг BeBrand; финальный прайс офиса СПб утверждается до публикации.
         </p>
-        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline no-underline">
+        <a href="/tseny-i-poshliny/" class="font-semibold text-[#9E1B1E] hover:underline no-underline">
           Смотреть подробный прайс-лист и таблицу пошлин Роспатента 2026 →
         </a>
       </div>
@@ -292,56 +323,53 @@ const steps = [
     <FeeCalculator />
   </div>
 
-  <!-- Блок 5: Модель двойного доверия -->
-  <section aria-labelledby="trust-heading" class="border-y border-slate-200 bg-white py-14 sm:py-16">
+  <!-- Блок 5: Модель двойного доверия (Контрастный графитовый блок #121519) -->
+  <section aria-labelledby="trust-heading" class="border-y border-[#121519] bg-[#121519] py-14 sm:py-16 text-[#ECEEF2]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-10 lg:grid-cols-12">
         <div class="lg:col-span-5">
-          <h2 id="trust-heading" class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 id="trust-heading" class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Локальная ответственность в Санкт-Петербурге и ресурсы федерального патентного центра
           </h2>
-          <p class="mt-4 text-base leading-relaxed text-slate-600">
+          <p class="mt-4 text-base leading-relaxed text-[#B8BFC9]">
             Вы общаетесь лично с руководителем и специалистами офиса в Санкт-Петербурге, а правовую экспертизу,
             подачу заявок и ведение дел в Роспатенте выполняют профильные департаменты и аттестованные патентные
             поверенные федерального центра BeBrand.
           </p>
 
-          <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm">
-            <p class="font-semibold text-slate-900">Схема взаимодействия</p>
-            <ol class="mt-3 space-y-2 text-slate-700">
-              <li>1. Офис в СПб — личная диагностика, договор, контроль сроков.</li>
-              <li>2. Федеральный центр — профильные эксперты и патентные поверенные РФ.</li>
-              <li>3. Роспатент / ППС / Суды — электронная подача и защита прав.</li>
-            </ol>
-          </div>
+          <ol class="mt-8 space-y-3 border-t border-[#2A3039] pt-6 text-sm text-[#D6DAE2]">
+            <li><span class="font-semibold text-[#E5A9AA] tabular-nums">01.</span> Офис в СПб — личная диагностика, договор, контроль сроков.</li>
+            <li><span class="font-semibold text-[#E5A9AA] tabular-nums">02.</span> Федеральный центр — профильные эксперты и поверенные РФ.</li>
+            <li><span class="font-semibold text-[#E5A9AA] tabular-nums">03.</span> Роспатент / ППС / Суды — электронная подача и защита прав.</li>
+          </ol>
         </div>
 
-        <ol class="space-y-4 lg:col-span-7">
-          <li class="rounded-xl border border-slate-200 p-5">
-            <h3 class="text-base font-bold text-slate-900">1. Проверенный объём завершённых регистраций</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-slate-600">
+        <ol class="divide-y divide-[#2A3039] border-y border-[#2A3039] lg:col-span-7">
+          <li class="py-6">
+            <h3 class="text-base font-bold text-white">1. Проверенный объём завершённых регистраций</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#B8BFC9]">
               По данным независимого рейтинга IRPA за 2026 год ООО «БизБренд» занимает 2-е место в России с 4 103
               зарегистрированными товарными знаками (5,77% коммерческого сегмента). В официальных рейтингах Роспатента
               за 2020–I пол. 2022 года компания удерживала 1-е место по электронной подаче заявок на товарные знаки.
             </p>
           </li>
-          <li class="rounded-xl border border-slate-200 p-5">
-            <h3 class="text-base font-bold text-slate-900">2. Узкая специализация патентных поверенных под вид объекта</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-slate-600">
+          <li class="py-6">
+            <h3 class="text-base font-bold text-white">2. Узкая специализация патентных поверенных под вид объекта</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#B8BFC9]">
               Заявки на товарные знаки, патентные формулы и судебные споры ведут разные профильные подразделения под
               руководством аттестованных патентных поверенных РФ (№ 2149, № 2150, № 2314), а не юристы широкого профиля.
             </p>
           </li>
-          <li class="rounded-xl border border-slate-200 p-5">
-            <h3 class="text-base font-bold text-slate-900">3. Оптимизация пошлин и прозрачная смета до договора</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-slate-600">
+          <li class="py-6">
+            <h3 class="text-base font-bold text-white">3. Оптимизация пошлин и прозрачная смета до договора</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#B8BFC9]">
               Мы отдельно показываем гонорар бюро и государственные пошлины до подписания договора. Перечень товаров и
               услуг редактируется так, чтобы защитить реальный бизнес и не переплачивать по 500 ₽ за ненужные позиции МКТУ сверх 10.
             </p>
           </li>
-          <li class="rounded-xl border border-slate-200 p-5">
-            <h3 class="text-base font-bold text-slate-900">4. Электронный документооборот с ФИПС и контроль сроков</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-slate-600">
+          <li class="py-6">
+            <h3 class="text-base font-bold text-white">4. Электронный документооборот с ФИПС и контроль сроков</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#B8BFC9]">
               Заявки подаются в электронном виде с фиксацией даты приоритета в день поступления в ведомство; по данным
               компании, собственная IT-система контролирует сроки ответов на запросы экспертизы и уведомлений Роспатента.
             </p>
@@ -354,29 +382,34 @@ const steps = [
   <!-- Блок 6: Порядок работы -->
   <section aria-labelledby="steps-heading" class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
     <div class="max-w-3xl">
-      <h2 id="steps-heading" class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+      <h2 id="steps-heading" class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl">
         Как проходит работа: от проверки до свидетельства
       </h2>
-      <p class="mt-3 text-base text-slate-600">
+      <p class="mt-3 text-base text-[#4E5560]">
         Ниже приведён сквозной график на примере регистрации товарного знака (процедуры по патентам, ПО и договорам
         детализированы на профильных страницах).
       </p>
     </div>
 
-    <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-      {steps.map((step) => (
-        <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6">
+    <div class="mt-8 grid divide-y divide-[#D6DAE2] border border-[#D6DAE2] bg-white md:grid-cols-2 md:divide-y-0 lg:grid-cols-4">
+      {steps.map((step, idx) => (
+        <article class:list={[
+          'flex flex-col justify-between p-6',
+          idx > 0 ? 'lg:border-l lg:border-[#D6DAE2]' : '',
+          idx % 2 === 1 ? 'md:border-l md:border-[#D6DAE2] lg:border-l' : '',
+          idx >= 2 ? 'md:border-t md:border-[#D6DAE2] lg:border-t-0' : '',
+        ]}>
           <div>
             <div class="flex items-center justify-between gap-2">
-              <span class="text-sm font-extrabold text-blue-700 tabular-nums">Шаг {step.num}</span>
-              <span class="text-xs font-medium text-slate-500">{step.term}</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#9E1B1E] tabular-nums">Шаг {step.num}</span>
+              <span class="text-xs font-medium text-[#4E5560]">{step.term}</span>
             </div>
-            <h3 class="mt-3 text-lg font-bold text-slate-900">{step.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{step.desc}</p>
+            <h3 class="mt-3 text-lg font-bold text-[#121519]">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#4E5560]">{step.desc}</p>
           </div>
-          <div class="mt-5 rounded-lg bg-slate-50 p-3.5 text-xs leading-relaxed text-slate-700 border border-slate-200">
-            <span class="block font-semibold text-slate-900">Документ на руки:</span>
-            {step.doc}
+          <div class="mt-6 border-t border-[#D6DAE2] py-3 text-xs leading-relaxed text-[#121519]">
+            <span class="block font-semibold text-[#9E1B1E]">Документ на руки:</span>
+            <span class="mt-1 block text-[#4E5560]">{step.doc}</span>
           </div>
         </article>
       ))}
@@ -384,7 +417,7 @@ const steps = [
   </section>
 
   <!-- Блок 7: Команда -->
-  <div class="border-t border-slate-200 bg-white">
+  <div class="border-t border-[#D6DAE2] bg-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <TeamSection />
     </div>
@@ -396,22 +429,22 @@ const steps = [
   </div>
 
   <!-- Блок 9: Основная форма заявки -->
-  <section id="lead-form-section" aria-labelledby="main-form-heading" class="border-y border-slate-200 bg-white py-14 sm:py-16">
+  <section id="lead-form-section" aria-labelledby="main-form-heading" class="border-y border-[#D6DAE2] bg-white py-14 sm:py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-10 lg:grid-cols-12">
         <div class="lg:col-span-5">
-          <h2 id="main-form-heading" class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 id="main-form-heading" class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl">
             Запросить предварительную проверку или консультацию
           </h2>
-          <p class="mt-4 text-base leading-relaxed text-slate-600">
+          <p class="mt-4 text-base leading-relaxed text-[#4E5560]">
             Опишите задачу в двух предложениях или укажите название бренда — специалист офиса в Санкт-Петербурге
             свяжется с вами в рабочее время, оценит базовые риски и подготовит смету с разбивкой пошлин.
           </p>
-          <p class="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-700 border border-slate-200">
+          <p class="mt-6 border-l-4 border-[#9E1B1E] bg-[#F7F8FA] p-4 text-sm text-[#121519]">
             Без навязчивых обзвонов: посмотрим задачу, назовём реальные сроки и точную сумму государственных пошлин до заключения договора.
           </p>
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 lg:col-span-7">
+        <div class="border border-[#D6DAE2] bg-[#F7F8FA] p-6 sm:p-8 lg:col-span-7">
           <LeadForm
             formId="main-lead-form"
             goalId="goal_form_main_submit"
@@ -427,45 +460,45 @@ const steps = [
   <section aria-labelledby="contacts-home-heading" class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
     <div class="grid items-start gap-8 lg:grid-cols-12">
       <div class="lg:col-span-5">
-        <h2 id="contacts-home-heading" class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+        <h2 id="contacts-home-heading" class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl">
           Офис BeBrand в Санкт-Петербурге
         </h2>
-        <address class="mt-5 space-y-3 text-base not-italic text-slate-700">
+        <address class="mt-6 space-y-3.5 text-base not-italic text-[#121519]">
           <p>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Адрес</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Адрес</span>
             {siteConfig.contacts.postalCode}, г. {siteConfig.contacts.city}, {siteConfig.contacts.streetAddress}
           </p>
           <p>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Ближайшее метро</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Ближайшее метро</span>
             {siteConfig.contacts.metro}
           </p>
           <p>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Телефон</span>
-            <a href={`tel:${siteConfig.contacts.phoneHref}`} data-ym-goal="goal_click_phone" class="font-semibold text-blue-700 hover:underline no-underline tabular-nums">
+            <span class="block text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Телефон</span>
+            <a href={`tel:${siteConfig.contacts.phoneHref}`} data-ym-goal="goal_click_phone" class="font-semibold text-[#9E1B1E] hover:underline no-underline tabular-nums">
               {siteConfig.contacts.phoneDisplay}
             </a>
           </p>
           <p>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Электронная почта</span>
-            <a href={`mailto:${siteConfig.contacts.email}`} data-ym-goal="goal_click_email" class="text-blue-700 hover:underline no-underline">
+            <span class="block text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Электронная почта</span>
+            <a href={`mailto:${siteConfig.contacts.email}`} data-ym-goal="goal_click_email" class="text-[#9E1B1E] hover:underline no-underline">
               {siteConfig.contacts.email}
             </a>
           </p>
           <p>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Мессенджеры</span>
-            <a href={siteConfig.contacts.telegramUrl} target="_blank" rel="noopener noreferrer" data-ym-goal="goal_click_messenger" class="font-medium text-blue-700 hover:underline no-underline">
+            <span class="block text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Мессенджеры</span>
+            <a href={siteConfig.contacts.telegramUrl} target="_blank" rel="noopener noreferrer" data-ym-goal="goal_click_messenger" class="font-medium text-[#9E1B1E] hover:underline no-underline">
               Telegram офиса СПб
             </a>
           </p>
           <p>
-            <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">График работы</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-[#4E5560]">График работы</span>
             {siteConfig.contacts.workingHours}
           </p>
         </address>
-        <p class="mt-4 text-sm text-slate-600">
+        <p class="mt-4 text-sm text-[#4E5560]">
           Принимаем клиентов очно в Санкт-Петербурге и работаем дистанционно по всей Ленинградской области и Северо-Западу.
         </p>
-        <a href="/kontakty/" class="mt-4 inline-block text-sm font-semibold text-blue-700 hover:underline no-underline">
+        <a href="/kontakty/" class="mt-4 inline-block text-sm font-semibold text-[#9E1B1E] hover:underline no-underline">
           Схема проезда и реквизиты →
         </a>
       </div>

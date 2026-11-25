@@ -73,15 +73,15 @@ const jsonLd = {
     <Breadcrumbs items={[{ label: 'Договоры и франшиза' }]} />
 
     <section class="max-w-4xl">
-      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+      <h1 class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl lg:text-5xl">
         Договоры на интеллектуальную собственность: франшиза, лицензии и передача прав
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+      <p class="mt-4 text-lg leading-relaxed text-[#4E5560]">
         Составляем договоры распоряжения исключительными правами и регистрируем предоставление или переход прав в
         Роспатенте. Помогаем петербургским сетям юридически корректно упаковывать франшизы, наводить порядок в правах
         между юрлицами холдинга и фиксировать авторские права на контент, рецептуры и дизайн.
       </p>
-      <a href="#contracts-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 no-underline">
+      <a href="#contracts-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-sm bg-[#9E1B1E] px-6 py-3 text-sm font-semibold text-white hover:bg-[#7E1417] no-underline">
         Обсудить договор или аудит франшизы
       </a>
     </section>
@@ -140,19 +140,19 @@ const jsonLd = {
       </div>
     </section>
 
-    <section class="mt-12 grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-amber-200 bg-amber-50/50 p-6">
-        <h2 class="text-xl font-bold text-slate-900">Почему опасно держать знак на одном юрлице, а работать через другое</h2>
-        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+    <section class="mt-12 grid border border-[#D6DAE2] bg-white md:grid-cols-2">
+      <div class="border-l-4 border-l-[#9E1B1E] bg-[#F9ECEC]/40 p-6 sm:p-8">
+        <h2 class="text-xl font-bold text-[#121519]">Почему опасно держать знак на одном юрлице, а работать через другое</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[#4E5560]">
           В петербургском бизнесе регулярно встречается разрыв правообладателя: товарный знак зарегистрирован на старое ООО
           или учредителя-ИП, а фактическая выручка, аренда точек и поставки идут через новое операционное ООО без
           зарегистрированного лицензионного договора. В случае конфликта оппонент вправе инициировать досрочное
           прекращение охраны знака вследствие неиспользования правообладателем (ст. 1486 ГК РФ).
         </p>
       </div>
-      <div class="rounded-2xl border border-slate-200 bg-white p-6">
-        <h2 class="text-xl font-bold text-slate-900">Ключевые условия договора коммерческой концессии</h2>
-        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+      <div class="border-t border-[#D6DAE2] p-6 sm:p-8 md:border-t-0 md:border-l">
+        <h2 class="text-xl font-bold text-[#121519]">Ключевые условия договора коммерческой концессии</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[#4E5560]">
           Закрепляем все существенные блоки: состав передаваемого комплекса прав (товарный знак, стандарты, коммерческий
           опыт и секреты производства), права и обязанности сторон, структуру паушального взноса и роялти, срок и
           территориальные границы, условия расторжения, защиту коммерческой тайны, требования к маркетингу и обучению.
@@ -164,7 +164,7 @@ const jsonLd = {
       <FaqAccordion items={faqItems} />
     </div>
 
-    <section id="contracts-form" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+    <section id="contracts-form" class="mt-12 border border-[#D6DAE2] bg-white p-6 sm:p-8">
       <LeadForm
         formId="contracts-lead-form"
         goalId="goal_form_contracts_submit"
@@ -172,12 +172,13 @@ const jsonLd = {
         submitLabel="Обсудить договор"
         taskLabel="Вид договора и краткое описание ситуации"
       />
-      <div class="mt-6 flex flex-wrap gap-4 border-t border-slate-200 pt-5 text-sm">
-        <a href="/tovarnye-znaki/" class="font-semibold text-blue-700 hover:underline">Товарные знаки →</a>
-        <a href="/patentovanie/" class="font-semibold text-blue-700 hover:underline">Патентование →</a>
-        <a href="/programmy-evm-i-reestr-po/" class="font-semibold text-blue-700 hover:underline">Программы ЭВМ →</a>
-        <a href="/zashchita-i-spory/" class="font-semibold text-blue-700 hover:underline">Защита и споры →</a>
-        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline">Цены и пошлины →</a>
+      <hr class="my-6 border-[#D6DAE2]" />
+      <div class="flex flex-wrap gap-4 text-sm">
+        <a href="/tovarnye-znaki/" class="font-semibold text-[#9E1B1E] hover:underline">Товарные знаки →</a>
+        <a href="/patentovanie/" class="font-semibold text-[#9E1B1E] hover:underline">Патентование →</a>
+        <a href="/programmy-evm-i-reestr-po/" class="font-semibold text-[#9E1B1E] hover:underline">Программы ЭВМ →</a>
+        <a href="/zashchita-i-spory/" class="font-semibold text-[#9E1B1E] hover:underline">Защита и споры →</a>
+        <a href="/tseny-i-poshliny/" class="font-semibold text-[#9E1B1E] hover:underline">Цены и пошлины →</a>
       </div>
     </section>
   </div>

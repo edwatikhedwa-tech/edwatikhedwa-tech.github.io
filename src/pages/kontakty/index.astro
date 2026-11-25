@@ -66,51 +66,51 @@ const jsonLd = {
   <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
     <Breadcrumbs items={[{ label: 'Контакты' }]} />
 
-    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+    <h1 class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl lg:text-5xl">
       Контакты офиса BeBrand в Санкт-Петербурге
     </h1>
 
     <div class="mt-8 grid items-start gap-8 lg:grid-cols-12">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:col-span-5">
-        <address class="space-y-4 text-base not-italic text-slate-700">
+      <div class="border border-[#D6DAE2] bg-white p-6 sm:p-8 lg:col-span-5">
+        <address class="space-y-4 text-base not-italic text-[#121519]">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Адрес офиса</p>
-            <p class="mt-1 font-medium text-slate-900">
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Адрес офиса</p>
+            <p class="mt-1 font-medium text-[#121519]">
               {siteConfig.contacts.postalCode}, Россия, г. {siteConfig.contacts.city}, {siteConfig.contacts.streetAddress}
             </p>
           </div>
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Как добраться</p>
-            <p class="mt-1">Ближайшая станция метро: {siteConfig.contacts.metro}</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Как добраться</p>
+            <p class="mt-1 text-[#4E5560]">Ближайшая станция метро: {siteConfig.contacts.metro}</p>
           </div>
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Телефон</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Телефон</p>
             <p class="mt-1">
-              <a href={`tel:${siteConfig.contacts.phoneHref}`} data-ym-goal="goal_click_phone" class="text-lg font-bold text-blue-700 hover:underline no-underline tabular-nums">
+              <a href={`tel:${siteConfig.contacts.phoneHref}`} data-ym-goal="goal_click_phone" class="text-lg font-bold text-[#9E1B1E] hover:underline no-underline tabular-nums">
                 {siteConfig.contacts.phoneDisplay}
               </a>
             </p>
           </div>
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Email</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Email</p>
             <p class="mt-1">
-              <a href={`mailto:${siteConfig.contacts.email}`} data-ym-goal="goal_click_email" class="text-blue-700 hover:underline no-underline">
+              <a href={`mailto:${siteConfig.contacts.email}`} data-ym-goal="goal_click_email" class="text-[#9E1B1E] hover:underline no-underline">
                 {siteConfig.contacts.email}
               </a>
             </p>
           </div>
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Мессенджеры</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Мессенджеры</p>
             <p class="mt-1">
-              <a href={siteConfig.contacts.telegramUrl} target="_blank" rel="noopener noreferrer" data-ym-goal="goal_click_messenger" class="font-medium text-blue-700 hover:underline no-underline">
+              <a href={siteConfig.contacts.telegramUrl} target="_blank" rel="noopener noreferrer" data-ym-goal="goal_click_messenger" class="font-medium text-[#9E1B1E] hover:underline no-underline">
                 Telegram офиса в Санкт-Петербурге
               </a>
             </p>
           </div>
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Режим работы</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#4E5560]">Режим работы</p>
             <p class="mt-1 text-sm">{siteConfig.contacts.workingHours}</p>
-            <p class="mt-1 text-xs text-slate-500">Сб, Вс — выходной (онлайн-заявки принимаем круглосуточно).</p>
+            <p class="mt-1 text-xs text-[#4E5560]">Сб, Вс — выходной (онлайн-заявки принимаем круглосуточно).</p>
           </div>
         </address>
       </div>
@@ -121,7 +121,7 @@ const jsonLd = {
     </div>
 
     <section class="mt-12 grid gap-8 lg:grid-cols-12">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:col-span-7">
+      <div class="border border-[#D6DAE2] bg-white p-6 sm:p-8 lg:col-span-7">
         <LeadForm
           formId="contacts-lead-form"
           goalId="goal_form_contacts_submit"
@@ -131,28 +131,28 @@ const jsonLd = {
         />
       </div>
 
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:col-span-5">
-        <h2 class="text-xl font-bold text-slate-900">Юридические реквизиты для договоров и ЭДО</h2>
-        <dl class="mt-4 space-y-3 text-sm text-slate-700">
-          <div class="border-b border-slate-100 pb-2">
-            <dt class="text-xs text-slate-500">Наименование</dt>
-            <dd class="font-medium text-slate-900">{siteConfig.legal.entityName}</dd>
+      <div class="border border-[#D6DAE2] bg-white p-6 sm:p-8 lg:col-span-5">
+        <h2 class="text-xl font-bold text-[#121519]">Юридические реквизиты для договоров и ЭДО</h2>
+        <dl class="mt-4 divide-y divide-[#D6DAE2] text-sm text-[#4E5560]">
+          <div class="py-2.5">
+            <dt class="text-xs text-[#4E5560]">Наименование</dt>
+            <dd class="font-medium text-[#121519]">{siteConfig.legal.entityName}</dd>
           </div>
-          <div class="border-b border-slate-100 pb-2">
-            <dt class="text-xs text-slate-500">ИНН</dt>
-            <dd class="font-medium tabular-nums">{siteConfig.legal.inn}</dd>
+          <div class="py-2.5">
+            <dt class="text-xs text-[#4E5560]">ИНН</dt>
+            <dd class="font-medium text-[#121519] tabular-nums">{siteConfig.legal.inn}</dd>
           </div>
-          <div class="border-b border-slate-100 pb-2">
-            <dt class="text-xs text-slate-500">ОГРН / ОГРНИП</dt>
-            <dd class="font-medium tabular-nums">{siteConfig.legal.ogrn}</dd>
+          <div class="py-2.5">
+            <dt class="text-xs text-[#4E5560]">ОГРН / ОГРНИП</dt>
+            <dd class="font-medium text-[#121519] tabular-nums">{siteConfig.legal.ogrn}</dd>
           </div>
-          <div class="border-b border-slate-100 pb-2">
-            <dt class="text-xs text-slate-500">Юридический адрес</dt>
-            <dd>{siteConfig.legal.legalAddress}</dd>
+          <div class="py-2.5">
+            <dt class="text-xs text-[#4E5560]">Юридический адрес</dt>
+            <dd class="text-[#121519]">{siteConfig.legal.legalAddress}</dd>
           </div>
-          <div>
-            <dt class="text-xs text-slate-500">Оператор ЭДО</dt>
-            <dd>{siteConfig.legal.edoOperator}</dd>
+          <div class="pt-2.5">
+            <dt class="text-xs text-[#4E5560]">Оператор ЭДО</dt>
+            <dd class="text-[#121519]">{siteConfig.legal.edoOperator}</dd>
           </div>
         </dl>
       </div>

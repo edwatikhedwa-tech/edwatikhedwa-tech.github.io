@@ -120,13 +120,13 @@ const priceRows = [
     <Breadcrumbs items={[{ label: 'Цены и пошлины 2026' }]} />
 
     <section class="max-w-4xl">
-      <span class="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">
-        Актуально на ноябрь 2026 года
-      </span>
-      <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+      <h1 class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl lg:text-5xl">
         Цены на услуги и государственные пошлины Роспатента (2026)
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+      <p class="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#9E1B1E]">
+        Актуально на ноябрь 2026 года
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-[#4E5560]">
         Мы разделяем две составляющие бюджета: вознаграждение бюро за юридическую работу и обязательные государственные
         пошлины, которые оплачиваются напрямую в бюджет по реквизитам Роспатента (ФИПС). Общий бюджет и состав работ
         фиксируются в договоре до оплаты.
@@ -134,7 +134,7 @@ const priceRows = [
     </section>
 
     <section class="mt-10">
-      <h2 class="text-2xl font-bold text-slate-900">Сводная таблица стоимости и пошлин 2026 года</h2>
+      <h2 class="text-2xl font-semibold text-[#121519] sm:text-3xl">Сводная таблица стоимости и пошлин 2026 года</h2>
       <div tabindex="0" role="region" aria-label="Прайс-лист и пошлины 2026" class="table-wrapper mt-5">
         <table class="data-table data-table--stack">
           <thead>
@@ -148,14 +148,14 @@ const priceRows = [
             {priceRows.map((row) => (
               <tr>
                 <th scope="row">{row.action}</th>
-                <td data-label="Госпошлина / Тариф ФИПС" class="tabular-nums text-slate-700">{row.fee}</td>
-                <td data-label="Гонорар бюро" class="font-semibold text-slate-900 tabular-nums whitespace-nowrap">{row.bureau}</td>
+                <td data-label="Госпошлина / Тариф ФИПС" class="tabular-nums text-[#4E5560]">{row.fee}</td>
+                <td data-label="Гонорар бюро" class="font-semibold text-[#121519] tabular-nums whitespace-nowrap">{row.bureau}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p class="mt-3 text-xs text-slate-500">
+      <p class="mt-3 text-xs text-[#4E5560]">
         * {siteConfig.prices.note}.
       </p>
     </section>
@@ -164,9 +164,9 @@ const priceRows = [
       <FeeCalculator headingId="price-calc-heading" />
     </div>
 
-    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-      <h2 class="text-xl font-bold text-slate-900">Порядок оплаты и закрывающие документы</h2>
-      <p class="mt-3 text-sm leading-relaxed text-slate-700">
+    <section class="mt-12 border border-[#D6DAE2] bg-white p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-[#121519]">Порядок оплаты и закрывающие документы</h2>
+      <p class="mt-3 text-sm leading-relaxed text-[#4E5560]">
         Работаем по официальному договору с безналичным расчётом для ООО и ИП (договор, счёт, акт выполненных работ) и
         оплатой для физических лиц. Государственные пошлины оплачиваются поэтапно по платёжным поручениям с точными
         реквизитами Роспатента, которые готовит наш специалист.
@@ -177,7 +177,7 @@ const priceRows = [
       <FaqAccordion items={faqItems} />
     </div>
 
-    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+    <section class="mt-12 border border-[#D6DAE2] bg-white p-6 sm:p-8">
       <LeadForm
         formId="price-lead-form"
         goalId="goal_form_price_submit"

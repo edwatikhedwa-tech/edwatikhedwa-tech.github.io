@@ -22,41 +22,42 @@ const initial = calculateTrademarkBudget({
 <section
   id="calculator"
   aria-labelledby={headingId}
-  class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10"
+  class="border border-[#121519] bg-white shadow-[6px_6px_0_0_#D6DAE2]"
   data-bureau-std={siteConfig.prices.trademarkStandard}
   data-bureau-acc={siteConfig.prices.trademarkAccelerated}
 >
-  <div class="max-w-3xl">
-    <span class="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">
-      Актуально на ноябрь 2026 года
-    </span>
-    <h2 id={headingId} class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-      Калькулятор пошлин Роспатента и стоимости регистрации товарного знака (2026)
-    </h2>
-    <p class="mt-3 text-base text-slate-600">
-      Государственные пошлины оплачиваются напрямую в бюджет в два этапа: при подаче заявки и после положительного решения
-      экспертизы (через 6–9 месяцев). С 4 октября 2025 года по Постановлению Правительства РФ № 1459 за каждое
-      наименование товара или услуги сверх 10 позиций в одном классе МКТУ взимается доплата 500 ₽ — аккуратный подбор
-      перечня помогает избежать переплаты.
-    </p>
+  <div class="border-b border-[#D6DAE2] bg-[#ECEEF2]/60 px-6 py-6 sm:px-8 lg:px-10">
+    <div class="max-w-3xl">
+      <h2 id={headingId} class="text-2xl font-semibold tracking-tight text-[#121519] sm:text-3xl">
+        Калькулятор пошлин Роспатента и стоимости регистрации товарного знака (2026)
+      </h2>
+      <p class="mt-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#9E1B1E]">
+        Актуально на ноябрь 2026 года
+      </p>
+      <p class="mt-2.5 text-sm sm:text-base text-[#4E5560]">
+        Государственные пошлины оплачиваются напрямую в бюджет в два этапа: при подаче заявки и после положительного решения
+        экспертизы (через 6–9 месяцев). С 4 октября 2025 года по ПП РФ № 1459 за каждую позицию сверх 10 в одном классе МКТУ
+        взимается доплата 500 ₽.
+      </p>
+    </div>
   </div>
 
-  <div class="mt-8 grid gap-8 lg:grid-cols-12">
+  <div class="grid lg:grid-cols-12">
     <!-- Левая панель: контролы -->
-    <div class="space-y-6 lg:col-span-7">
+    <div class="space-y-6 p-6 sm:p-8 lg:col-span-7 lg:p-10">
       <fieldset>
-        <legend class="text-sm font-semibold text-slate-900">1. Тип обозначения</legend>
+        <legend class="text-sm font-semibold text-[#121519]">1. Тип обозначения</legend>
         <div class="mt-2.5 grid gap-2.5 sm:grid-cols-3">
-          <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70 has-[:checked]:text-blue-900">
-            <input type="radio" name="calc_designation" value="word" checked class="accent-blue-700" />
+          <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2.5 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC] has-[:checked]:text-[#9E1B1E]">
+            <input type="radio" name="calc_designation" value="word" checked class="accent-[#9E1B1E]" />
             <span>Словесное</span>
           </label>
-          <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70 has-[:checked]:text-blue-900">
-            <input type="radio" name="calc_designation" value="figurative" class="accent-blue-700" />
+          <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2.5 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC] has-[:checked]:text-[#9E1B1E]">
+            <input type="radio" name="calc_designation" value="figurative" class="accent-[#9E1B1E]" />
             <span>Изобразительное</span>
           </label>
-          <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70 has-[:checked]:text-blue-900">
-            <input type="radio" name="calc_designation" value="combined" class="accent-blue-700" />
+          <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2.5 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC] has-[:checked]:text-[#9E1B1E]">
+            <input type="radio" name="calc_designation" value="combined" class="accent-[#9E1B1E]" />
             <span>Комбинированное</span>
           </label>
         </div>
@@ -64,7 +65,7 @@ const initial = calculateTrademarkBudget({
 
       <div class="grid gap-5 sm:grid-cols-2">
         <div>
-          <label for="calc-classes" class="block text-sm font-semibold text-slate-900">
+          <label for="calc-classes" class="block text-sm font-semibold text-[#121519]">
             2. Количество классов МКТУ (1–45)
           </label>
           <div class="mt-2 flex items-center gap-3">
@@ -74,7 +75,7 @@ const initial = calculateTrademarkBudget({
               min="1"
               max="45"
               value="1"
-              class="w-full accent-blue-700 cursor-pointer"
+              class="w-full accent-[#9E1B1E] cursor-pointer"
             />
             <input
               id="calc-classes-num"
@@ -83,14 +84,14 @@ const initial = calculateTrademarkBudget({
               max="45"
               value="1"
               aria-label="Количество классов МКТУ числом"
-              class="w-20 min-h-[44px] rounded-lg border border-slate-300 px-2.5 text-center text-sm font-semibold tabular-nums"
+              class="w-20 min-h-[44px] rounded-sm border border-[#B8B1A3] px-2.5 text-center text-sm font-semibold tabular-nums"
             />
           </div>
-          <p class="mt-1.5 text-xs text-slate-500">За каждый доп. класс: +3 500 ₽ при подаче; от 6-го класса: +2 000 ₽ на этапе выдачи.</p>
+          <p class="mt-1.5 text-xs text-[#4E5560]">За каждый доп. класс: +3 500 ₽ при подаче; от 6-го класса: +2 000 ₽ на этапе выдачи.</p>
         </div>
 
         <div>
-          <label for="calc-extra-items" class="block text-sm font-semibold text-slate-900">
+          <label for="calc-extra-items" class="block text-sm font-semibold text-[#121519]">
             3. Позиций сверх 10 в классах
           </label>
           <div class="mt-2 flex items-center gap-3">
@@ -100,7 +101,7 @@ const initial = calculateTrademarkBudget({
               min="0"
               max="100"
               value="0"
-              class="w-full accent-blue-700 cursor-pointer"
+              class="w-full accent-[#9E1B1E] cursor-pointer"
             />
             <input
               id="calc-extra-items-num"
@@ -109,37 +110,37 @@ const initial = calculateTrademarkBudget({
               max="100"
               value="0"
               aria-label="Количество позиций сверх 10 числом"
-              class="w-20 min-h-[44px] rounded-lg border border-slate-300 px-2.5 text-center text-sm font-semibold tabular-nums"
+              class="w-20 min-h-[44px] rounded-sm border border-[#B8B1A3] px-2.5 text-center text-sm font-semibold tabular-nums"
             />
           </div>
-          <p class="mt-1.5 text-xs text-slate-500">До 10 позиций в каждом классе входят в базовую пошлину; свыше — +500 ₽/поз.</p>
+          <p class="mt-1.5 text-xs text-[#4E5560]">До 10 позиций в каждом классе входят в базовую пошлину; свыше — +500 ₽/поз.</p>
         </div>
       </div>
 
       <div class="grid gap-5 sm:grid-cols-2">
         <fieldset>
-          <legend class="text-sm font-semibold text-slate-900">4. Срок рассмотрения</legend>
+          <legend class="text-sm font-semibold text-[#121519]">4. Срок рассмотрения</legend>
           <div class="mt-2.5 space-y-2">
-            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70">
-              <input type="radio" name="calc_speed" value="standard" checked class="accent-blue-700" />
+            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC]">
+              <input type="radio" name="calc_speed" value="standard" checked class="accent-[#9E1B1E]" />
               <span>Стандартный (6–9 мес.)</span>
             </label>
-            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70">
-              <input type="radio" name="calc_speed" value="accelerated" class="accent-blue-700" />
+            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC]">
+              <input type="radio" name="calc_speed" value="accelerated" class="accent-[#9E1B1E]" />
               <span>Ускоренный (2–3 мес.)</span>
             </label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend class="text-sm font-semibold text-slate-900">5. Формат свидетельства</legend>
+          <legend class="text-sm font-semibold text-[#121519]">5. Формат свидетельства</legend>
           <div class="mt-2.5 space-y-2">
-            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70">
-              <input type="radio" name="calc_cert" value="electronic" checked class="accent-blue-700" />
+            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC]">
+              <input type="radio" name="calc_cert" value="electronic" checked class="accent-[#9E1B1E]" />
               <span>Электронное (0 ₽)</span>
             </label>
-            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-800 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50/70">
-              <input type="radio" name="calc_cert" value="paper" class="accent-blue-700" />
+            <label class="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-sm border border-[#B8B1A3] px-3.5 py-2 text-sm font-medium text-[#121519] has-[:checked]:border-[#9E1B1E] has-[:checked]:bg-[#F9ECEC]">
+              <input type="radio" name="calc_cert" value="paper" class="accent-[#9E1B1E]" />
               <span>Бумажное (+3 000 ₽)</span>
             </label>
           </div>
@@ -148,32 +149,32 @@ const initial = calculateTrademarkBudget({
     </div>
 
     <!-- Правая панель: смета -->
-    <div class="flex flex-col justify-between rounded-xl border border-slate-200 bg-slate-50 p-6 lg:col-span-5">
+    <div class="flex flex-col justify-between border-t border-[#D6DAE2] bg-[#F7F8FA] p-6 sm:p-8 lg:col-span-5 lg:border-t-0 lg:border-l lg:p-10">
       <div>
-        <h3 class="text-lg font-bold text-slate-900">Предварительная смета бюджета</h3>
-        <dl class="mt-5 space-y-3.5 text-sm">
-          <div class="flex items-baseline justify-between gap-4 border-b border-slate-200 pb-3">
-            <dt class="text-slate-600">Этап 1: пошлина при подаче</dt>
-            <dd id="out-stage1" class="font-semibold text-slate-900 tabular-nums">{formatRub(initial.stage1Fee)}</dd>
+        <h3 class="text-lg font-bold text-[#121519]">Предварительная смета бюджета</h3>
+        <dl class="mt-5 divide-y divide-[#D6DAE2] text-sm">
+          <div class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-[#4E5560]">Этап 1: пошлина при подаче</dt>
+            <dd id="out-stage1" class="font-semibold text-[#121519] tabular-nums">{formatRub(initial.stage1Fee)}</dd>
           </div>
-          <div class="flex items-baseline justify-between gap-4 border-b border-slate-200 pb-3">
-            <dt class="text-slate-600">Этап 2: пошлина после решения (6–9 мес.)</dt>
-            <dd id="out-stage2" class="font-semibold text-slate-900 tabular-nums">{formatRub(initial.stage2Fee)}</dd>
+          <div class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-[#4E5560]">Этап 2: пошлина после решения (6–9 мес.)</dt>
+            <dd id="out-stage2" class="font-semibold text-[#121519] tabular-nums">{formatRub(initial.stage2Fee)}</dd>
           </div>
-          <div id="row-fips" hidden class="flex items-baseline justify-between gap-4 border-b border-slate-200 pb-3">
-            <dt class="text-slate-600">Тариф ФИПС за ускорение (вкл. НДС 22%)</dt>
-            <dd id="out-fips" class="font-semibold text-amber-800 tabular-nums">0 ₽</dd>
+          <div id="row-fips" hidden class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-[#4E5560]">Тариф ФИПС за ускорение (вкл. НДС 22%)</dt>
+            <dd id="out-fips" class="font-semibold text-[#9E1B1E] tabular-nums">0 ₽</dd>
           </div>
-          <div class="flex items-baseline justify-between gap-4 border-b border-slate-200 pb-3">
-            <dt class="text-slate-600">
+          <div class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-[#4E5560]">
               Услуги BeBrand СПб
-              <span class="block text-xs text-slate-500">({siteConfig.prices.isReference ? 'федеральный ориентир' : 'тариф СПб'})</span>
+              <span class="block text-xs text-[#4E5560]">({siteConfig.prices.isReference ? 'федеральный ориентир' : 'тариф СПб'})</span>
             </dt>
-            <dd id="out-bureau" class="font-semibold text-slate-900 tabular-nums">от {formatRub(initial.bureauFee)}</dd>
+            <dd id="out-bureau" class="font-semibold text-[#121519] tabular-nums">от {formatRub(initial.bureauFee)}</dd>
           </div>
-          <div class="flex items-baseline justify-between gap-4 pt-1">
-            <dt class="text-base font-bold text-slate-900">Итого (пошлины + услуги)</dt>
-            <dd id="out-total" class="text-2xl font-bold text-blue-700 tabular-nums">от {formatRub(initial.grandTotal)}</dd>
+          <div class="flex items-baseline justify-between gap-4 pt-4">
+            <dt class="text-base font-bold text-[#121519]">Итого (пошлины + услуги)</dt>
+            <dd id="out-total" class="font-display text-3xl font-bold text-[#9E1B1E] tabular-nums">от {formatRub(initial.grandTotal)}</dd>
           </div>
         </dl>
       </div>
@@ -182,11 +183,11 @@ const initial = calculateTrademarkBudget({
         <button
           type="button"
           id="calc-submit-btn"
-          class="w-full min-h-[48px] rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-blue-800 cursor-pointer"
+          class="w-full min-h-[48px] rounded-sm bg-[#9E1B1E] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#7E1417] cursor-pointer"
         >
           Получить расчёт с подбором классов МКТУ
         </button>
-        <p class="mt-3 text-xs leading-relaxed text-slate-500">
+        <p class="mt-3 text-xs leading-relaxed text-[#4E5560]">
           Расчёт выполнен по Положению о патентных и иных пошлинах (ред. ПП РФ от 23.09.2025 № 1459) и Прейскуранту платных
           услуг ФИПС (ред. Приказа № 107 от 27.02.2026). Скидка 30% за электронную подачу не действует с 05.10.2024.
         </p>

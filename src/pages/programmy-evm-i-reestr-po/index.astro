@@ -73,14 +73,14 @@ const jsonLd = {
     <Breadcrumbs items={[{ label: 'Программы ЭВМ и Реестр ПО' }]} />
 
     <section class="max-w-4xl">
-      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+      <h1 class="text-3xl font-semibold tracking-tight text-[#121519] sm:text-4xl lg:text-5xl">
         Регистрация программ для ЭВМ, баз данных и включение в Реестр российского ПО
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+      <p class="mt-4 text-lg leading-relaxed text-[#4E5560]">
         Помогаем IT-компаниям и разработчикам Санкт-Петербурга оформить исключительные права на программные продукты и
         базы данных в Роспатенте и подготовить юридический и технический пакет для включения в Единый реестр российского ПО Минцифры.
       </p>
-      <a href="#software-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 no-underline">
+      <a href="#software-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-sm bg-[#9E1B1E] px-6 py-3 text-sm font-semibold text-white hover:bg-[#7E1417] no-underline">
         Оценить готовность ПО к регистрации
       </a>
     </section>
@@ -122,19 +122,19 @@ const jsonLd = {
       </div>
     </section>
 
-    <section class="mt-12 grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6">
-        <h2 class="text-xl font-bold text-slate-900">Состав работ</h2>
-        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+    <section class="mt-12 grid border border-[#D6DAE2] bg-white md:grid-cols-2">
+      <div class="p-6 sm:p-8">
+        <h2 class="text-xl font-bold text-[#121519]">Состав работ</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[#4E5560]">
           В контуре Роспатента проводим аудит цепочки прав (трудовые договоры, служебные задания, договоры авторского заказа),
           готовим заявление, реферат, депонируемые фрагменты исходного кода и согласия авторов. В контуре Минцифры проверяем
           структуру владения, совместимость стека, готовим эксплуатационную документацию и проверяем обязательное раскрытие
           стоимости ПО на сайте правообладателя.
         </p>
       </div>
-      <div class="rounded-2xl border border-slate-200 bg-white p-6">
-        <h2 class="text-xl font-bold text-slate-900">Типовые причины отказов и налоговые нюансы 2026</h2>
-        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+      <div class="border-t border-[#D6DAE2] p-6 sm:p-8 md:border-t-0 md:border-l">
+        <h2 class="text-xl font-bold text-[#121519]">Типовые причины отказов и налоговые нюансы 2026</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[#4E5560]">
           Частые причины срыва — неоформленный переход исключительных прав от фрилансеров и штатных разработчиков,
           несоответствие документации требованиям экспертного совета Минцифры и налоговые риски при доработке чужих
           продуктов (по позиции Минфина РФ освобождение от НДС не распространяется на подрядную доработку чужого ПО без
@@ -147,7 +147,7 @@ const jsonLd = {
       <FaqAccordion items={faqItems} />
     </div>
 
-    <section id="software-form" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+    <section id="software-form" class="mt-12 border border-[#D6DAE2] bg-white p-6 sm:p-8">
       <LeadForm
         formId="software-lead-form"
         goalId="goal_form_software_submit"
@@ -155,11 +155,12 @@ const jsonLd = {
         submitLabel="Запросить аудит ПО"
         taskLabel="Название продукта, стек и цель (Роспатент / Реестр Минцифры)"
       />
-      <div class="mt-6 flex flex-wrap gap-4 border-t border-slate-200 pt-5 text-sm">
-        <a href="/dogovory-i-franshiza/" class="font-semibold text-blue-700 hover:underline">Договоры с разработчиками →</a>
-        <a href="/tovarnye-znaki/" class="font-semibold text-blue-700 hover:underline">Товарный знак для IT-сервиса →</a>
-        <a href="/patentovanie/" class="font-semibold text-blue-700 hover:underline">Патентование интерфейса и ПАК →</a>
-        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline">Цены и пошлины →</a>
+      <hr class="my-6 border-[#D6DAE2]" />
+      <div class="flex flex-wrap gap-4 text-sm">
+        <a href="/dogovory-i-franshiza/" class="font-semibold text-[#9E1B1E] hover:underline">Договоры с разработчиками →</a>
+        <a href="/tovarnye-znaki/" class="font-semibold text-[#9E1B1E] hover:underline">Товарный знак для IT-сервиса →</a>
+        <a href="/patentovanie/" class="font-semibold text-[#9E1B1E] hover:underline">Патентование интерфейса и ПАК →</a>
+        <a href="/tseny-i-poshliny/" class="font-semibold text-[#9E1B1E] hover:underline">Цены и пошлины →</a>
       </div>
     </section>
   </div>

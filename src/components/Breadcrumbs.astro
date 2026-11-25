@@ -12,17 +12,17 @@ const { items } = Astro.props;
 ---
 
 <nav aria-label="Хлебные крошки" class="mb-6">
-  <ol class="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+  <ol class="flex flex-wrap items-center gap-2 text-sm text-[#4E5560]">
     <li>
-      <a href="/" class="hover:text-blue-700 no-underline">Главная</a>
+      <a href="/" class="hover:text-[#9E1B1E] no-underline transition-colors">Главная</a>
     </li>
     {items.map((item) => (
       <li class="flex items-center gap-2">
-        <span aria-hidden="true" class="text-slate-400">/</span>
+        <span aria-hidden="true" class="text-[#B8B1A3]">/</span>
         {item.href ? (
-          <a href={item.href} class="hover:text-blue-700 no-underline">{item.label}</a>
+          <a href={item.href} class="hover:text-[#9E1B1E] no-underline transition-colors">{item.label}</a>
         ) : (
-          <span aria-current="page" class="font-medium text-slate-900">{item.label}</span>
+          <span aria-current="page" class="font-semibold text-[#121519]">{item.label}</span>
         )}
       </li>
     ))}

@@ -4,12 +4,12 @@ import LeadForm from './LeadForm.astro';
 
 <dialog id="check-modal" closedby="any" aria-labelledby="check-modal-title">
   <div class="p-6 sm:p-8">
-    <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
+    <div class="flex items-start justify-between gap-4 border-b border-[#D6DAE2] pb-4">
       <div>
-        <h2 id="check-modal-title" class="text-xl font-bold text-slate-900">
+        <h2 id="check-modal-title" class="text-xl font-bold text-[#121519]">
           Запросить проверку или консультацию
         </h2>
-        <p class="mt-1 text-sm text-slate-600">
+        <p class="mt-1 text-sm text-[#4E5560]">
           Специалист офиса в Санкт-Петербурге оценит базовые риски и подготовит смету с разбивкой пошлин 2026 года.
         </p>
       </div>
@@ -19,7 +19,7 @@ import LeadForm from './LeadForm.astro';
         commandfor="check-modal"
         data-close-modal
         aria-label="Закрыть окно"
-        class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
+        class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-[#D6DAE2] text-[#4E5560] hover:bg-[#ECEEF2] hover:text-[#121519] cursor-pointer"
       >
         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -41,7 +41,6 @@ import LeadForm from './LeadForm.astro';
 <script>
   const dialog = document.getElementById('check-modal') as HTMLDialogElement | null;
   if (dialog) {
-    // Fallback for browsers without native commandfor / invoker commands
     if (!('commandForElement' in HTMLButtonElement.prototype)) {
       document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement | null;
@@ -57,7 +56,6 @@ import LeadForm from './LeadForm.astro';
       });
     }
 
-    // Fallback for browsers without <dialog closedby="any"> (e.g. Safari)
     if (!('closedBy' in HTMLDialogElement.prototype)) {
       const outside = (e: PointerEvent, el: HTMLDialogElement) => {
         const r = el.getBoundingClientRect();
@@ -72,14 +70,12 @@ import LeadForm from './LeadForm.astro';
       });
     }
 
-    // Track modal open goal
     document.querySelectorAll('[data-open-check-modal]').forEach((btn) => {
       btn.addEventListener('click', () => {
         window.dispatchEvent(new CustomEvent('ym-goal', { detail: { goalId: 'goal_open_check_modal' } }));
       });
     });
 
-    // Listen for custom open-check-modal events (e.g. from Calculator)
     window.addEventListener('open-check-modal', ((e: CustomEvent) => {
       const detail = e.detail || {};
       const form = dialog.querySelector('form') as HTMLFormElement | null;

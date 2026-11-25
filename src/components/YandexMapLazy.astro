@@ -2,17 +2,17 @@
 import siteConfig from '../data/site-config.json';
 
 const [lat, lon] = siteConfig.contacts.mapCoords;
-const yandexMapUrl = `https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=15&pt=${lon}%2C${lat}%2Cpm2blm`;
+const yandexMapUrl = `https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=15&pt=${lon}%2C${lat}%2Cpm2rdm`;
 ---
 
 <div
   data-lazy-map={yandexMapUrl}
-  class="relative h-[320px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 sm:h-[360px]"
+  class="relative h-[320px] w-full overflow-hidden border border-[#D6DAE2] bg-[#ECEEF2] sm:h-[360px]"
 >
   <div data-map-placeholder class="flex h-full flex-col items-center justify-center p-6 text-center">
-    <p class="text-sm font-semibold text-slate-800">Карта проезда: {siteConfig.contacts.city}</p>
-    <p class="mt-1 text-xs text-slate-600">{siteConfig.contacts.streetAddress}</p>
-    <p class="mt-2 text-xs text-slate-500">Загрузка интерактивной карты Яндекс…</p>
+    <p class="text-sm font-semibold text-[#121519]">Карта проезда: {siteConfig.contacts.city}</p>
+    <p class="mt-1 text-xs text-[#4E5560]">{siteConfig.contacts.streetAddress}</p>
+    <p class="mt-2 text-xs text-[#4E5560]">Загрузка интерактивной карты Яндекс…</p>
   </div>
 </div>
 
