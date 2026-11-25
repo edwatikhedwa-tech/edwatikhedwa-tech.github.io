@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import siteConfig from '../../data/site-config.json';
+---
+
+<BaseLayout
+  title="Политика в отношении обработки персональных данных | BeBrand Санкт-Петербург"
+  description="Политика обработки и защиты персональных данных пользователей сайта офиса BeBrand в Санкт-Петербурге в соответствии с требованиями Федерального закона № 152-ФЗ."
+  canonicalPath="/privacy/"
+  robots="noindex, follow"
+>
+  <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Политика обработки персональных данных' }]} />
+
+    <article class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 space-y-6 text-sm leading-relaxed text-slate-700">
+      <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+        Политика в отношении обработки персональных данных
+      </h1>
+
+      <section>
+        <h2 class="text-lg font-bold text-slate-900">1. Общие положения и реквизиты оператора</h2>
+        <p class="mt-2">
+          Настоящая Политика разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных»
+          и определяет порядок обработки персональных данных пользователей сайта офиса BeBrand в Санкт-Петербурге.
+        </p>
+        <p class="mt-2">
+          Оператор персональных данных: {siteConfig.legal.entityName} (ИНН: {siteConfig.legal.inn}, ОГРН: {siteConfig.legal.ogrn},
+          адрес: {siteConfig.legal.legalAddress}). Электронная почта для обращений субъектов ПДн:{' '}
+          <a href={`mailto:${siteConfig.contacts.email}`} class="text-blue-700 underline">{siteConfig.contacts.email}</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-slate-900">2. Цели и перечень обрабатываемых данных</h2>
+        <p class="mt-2">
+          Оператор обрабатывает персональные данные (имя, номер телефона или идентификатор мессенджера, описание задачи,
+          а также обезличенные технические метаданные cookie и IP-адрес) исключительно в целях обработки входящих заявок,
+          подготовки предварительных расчётов, заключения и исполнения договоров, а также анализа работы сайта с помощью
+          сервиса веб-аналитики Яндекс Метрика.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-slate-900">3. Правовые основания и сроки хранения</h2>
+        <p class="mt-2">
+          Обработка осуществляется на основании согласия субъекта персональных данных, выражаемого путём проставления
+          отметки в форме обратной связи, а также в целях исполнения договора. Персональные данные хранятся не дольше,
+          чем этого требуют цели обработки, и подлежат удалению по достижении целей либо при отзыве согласия.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-slate-900">4. Использование файлов cookie и отзыв согласия</h2>
+        <p class="mt-2">
+          Сайт использует технические и аналитические файлы cookie для корректной работы калькулятора и оценки посещаемости.
+          Пользователь вправе ограничить использование cookie в настройках браузера, а также в любой момент отозвать
+          согласие на обработку персональных данных, направив письмо на адрес{' '}
+          <a href={`mailto:${siteConfig.contacts.email}`} class="text-blue-700 underline">{siteConfig.contacts.email}</a>.
+        </p>
+      </section>
+
+      <div class="border-t border-slate-200 pt-4 flex gap-4">
+        <a href="/" class="font-semibold text-blue-700 hover:underline">← На главную</a>
+        <a href="/kontakty/" class="font-semibold text-blue-700 hover:underline">Контакты офиса СПб →</a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,189 @@
+---
+import siteConfig from '../data/site-config.json';
+
+interface Props {
+  formId: string;
+  goalId: string;
+  title?: string;
+  subtitle?: string;
+  submitLabel?: string;
+  showDirectionSelector?: boolean;
+  directions?: string[];
+  defaultDirection?: string;
+  showMeetingFormat?: boolean;
+  taskLabel?: string;
+  taskPlaceholder?: string;
+}
+
+const {
+  formId,
+  goalId,
+  title,
+  subtitle,
+  submitLabel = 'Отправить запрос',
+  showDirectionSelector = false,
+  directions = [
+    'Товарный знак',
+    'Патентование',
+    'ПО / Реестр Минцифры',
+    'Договор / Франшиза',
+    'Спор / Маркетплейсы',
+  ],
+  defaultDirection = directions[0],
+  showMeetingFormat = false,
+  taskLabel = 'Название бренда или краткое описание задачи',
+  taskPlaceholder = 'Например: регистрация названия кофейни в СПб по 43 классу МКТУ',
+} = Astro.props;
+---
+
+<form
+  id={formId}
+  action={siteConfig.leadEndpoint || '#lead-submit'}
+  method="POST"
+  data-goal-id={goalId}
+  data-lead-form
+  novalidate
+  class="space-y-4"
+>
+  {title && <h3 class="text-xl font-bold text-slate-900">{title}</h3>}
+  {subtitle && <p class="text-sm text-slate-600">{subtitle}</p>}
+
+  <!-- Honeypot spam protection -->
+  <div class="visually-hidden" aria-hidden="true">
+    <label for={`${formId}-company-site`}>Оставьте это поле пустым</label>
+    <input type="text" id={`${formId}-company-site`} name="website_hp" tabindex="-1" autocomplete="off" />
+  </div>
+
+  {showDirectionSelector && (
+    <fieldset>
+      <legend class="block text-sm font-semibold text-slate-900">Направление задачи</legend>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {directions.map((dir) => (
+          <label class="cursor-pointer">
+            <input
+              type="radio"
+              name="direction"
+              value={dir}
+              checked={dir === defaultDirection}
+              class="peer visually-hidden"
+            />
+            <span class="inline-flex min-h-[40px] items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 transition-colors peer-checked:border-blue-700 peer-checked:bg-blue-700 peer-checked:text-white peer-focus-visible:outline-3 peer-focus-visible:outline-blue-700 peer-focus-visible:outline-offset-2">
+              {dir}
+            </span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  )}
+
+  {showMeetingFormat && (
+    <fieldset>
+      <legend class="block text-sm font-semibold text-slate-900">Формат консультации</legend>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {['В офисе в СПб', 'Видеозвонок', 'Телефон'].map((fmt, idx) => (
+          <label class="cursor-pointer">
+            <input type="radio" name="meeting_format" value={fmt} checked={idx === 0} class="peer visually-hidden" />
+            <span class="inline-flex min-h-[40px] items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 transition-colors peer-checked:border-blue-700 peer-checked:bg-blue-700 peer-checked:text-white peer-focus-visible:outline-3 peer-focus-visible:outline-blue-700 peer-focus-visible:outline-offset-2">
+              {fmt}
+            </span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  )}
+
+  <div>
+    <label for={`${formId}-task`} class="block text-sm font-semibold text-slate-900">
+      {taskLabel}
+    </label>
+    <textarea
+      id={`${formId}-task`}
+      name="task"
+      rows="2"
+      placeholder={taskPlaceholder}
+      class="field-input mt-1.5 resize-y"
+    ></textarea>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label for={`${formId}-name`} class="block text-sm font-semibold text-slate-900">
+        Ваше имя <span class="text-red-700" aria-hidden="true">*</span>
+      </label>
+      <input
+        id={`${formId}-name`}
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        data-error={`${formId}-name-error`}
+        class="field-input mt-1.5"
+      />
+      <div id={`${formId}-name-error`} class="error-msg">
+        <span role="img" aria-label="Ошибка">✕</span> Укажите, как к вам обращаться.
+      </div>
+    </div>
+
+    <div>
+      <label for={`${formId}-contact`} class="block text-sm font-semibold text-slate-900">
+        Телефон или Telegram <span class="text-red-700" aria-hidden="true">*</span>
+      </label>
+      <input
+        id={`${formId}-contact`}
+        name="contact"
+        type="text"
+        required
+        autocomplete="tel"
+        autocorrect="off"
+        autocapitalize="none"
+        data-error={`${formId}-contact-error`}
+        class="field-input mt-1.5"
+      />
+      <div id={`${formId}-contact-error`} class="error-msg">
+        <span role="img" aria-label="Ошибка">✕</span> Укажите номер телефона или @ник в Telegram.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex items-start gap-2.5">
+      <input
+        id={`${formId}-consent`}
+        name="consent"
+        type="checkbox"
+        required
+        data-error={`${formId}-consent-error`}
+        class="mt-1 h-5 w-5 shrink-0 rounded border-slate-400 accent-blue-700 cursor-pointer"
+      />
+      <label for={`${formId}-consent`} class="text-xs leading-relaxed text-slate-600 cursor-pointer">
+        Соглашаюсь с <a href="/privacy/" class="text-blue-700 underline hover:text-blue-800">Политикой обработки персональных данных</a> (152-ФЗ)
+      </label>
+    </div>
+    <div id={`${formId}-consent-error`} class="error-msg">
+      <span role="img" aria-label="Ошибка">✕</span> Необходимо согласие на обработку персональных данных.
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full min-h-[48px] rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-blue-800 disabled:opacity-60 cursor-pointer"
+  >
+    {submitLabel}
+  </button>
+
+  <div
+    data-form-success
+    hidden
+    role="status"
+    class="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"
+  >
+    <p class="font-semibold">Запрос принят.</p>
+    <p class="mt-1">
+      Специалист офиса BeBrand в Санкт-Петербурге свяжется с вами в ближайшее рабочее время. Если вопрос срочный,
+      позвоните нам по номеру{' '}
+      <a href={`tel:${siteConfig.contacts.phoneHref}`} class="font-semibold underline">
+        {siteConfig.contacts.phoneDisplay}
+      </a>.
+    </p>
+  </div>
+</form>

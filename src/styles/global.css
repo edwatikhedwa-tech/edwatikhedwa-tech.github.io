@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-muted: #f1f5f9;
+    --ink: #0f172a;
+    --ink-muted: #475569;
+    --accent: #1d4ed8;
+    --accent-dark: #1e3a8a;
+    --accent-soft: #eff6ff;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --success: #15803d;
+    --error: #b91c1c;
+    --error-bg: #fef2f2;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--ink);
+    background-color: var(--bg);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* Focus ring accessibility */
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Visually hidden utility (modern-web-guidance canonical) */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Native <dialog> modal scroll containment (modern-web-guidance) */
+dialog:modal {
+  overscroll-behavior: contain;
+  margin: auto;
+  max-width: min(560px, calc(100vw - 2rem));
+  max-height: min(90dvh, 760px);
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 25px 50px -12px rgb(15 23 42 / 0.25);
+}
+
+dialog::backdrop {
+  background: rgb(15 23 42 / 0.55);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Form validation after user interaction (modern-web-guidance) */
+.field-input {
+  font: inherit;
+  font-size: max(1rem, 1em);
+  min-height: 48px;
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+  color: var(--ink);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+:is(.field-input:user-invalid, .field-input.user-invalid-fallback) {
+  border-color: var(--error);
+  background-color: var(--error-bg);
+}
+
+.error-msg {
+  display: none;
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+}
+
+:is(.field-input:user-invalid, .field-input.user-invalid-fallback) + .error-msg {
+  display: block;
+}
+
+:is(.field-input:user-valid, .field-input.user-valid-fallback) {
+  border-color: var(--success);
+}
+
+/* Accordion <details> styling & smooth animation (modern-web-guidance) */
+.faq-accordion details {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-accordion summary {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.125rem 0.5rem;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-accordion summary::before {
+  content: "";
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+  background-color: var(--accent);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center / contain;
+  rotate: -90deg;
+}
+
+.faq-accordion details[open] > summary::before {
+  rotate: 0deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq-accordion summary::before {
+    transition: rotate 0.2s ease;
+  }
+}
+
+.faq-accordion details::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+
+.faq-accordion details:not([open])::details-content {
+  block-size: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq-accordion details::details-content {
+    transition: block-size 0.25s ease-in-out, content-visibility 0.25s ease-in-out;
+    transition-behavior: allow-discrete;
+  }
+}
+
+/* Responsive data table with container queries (modern-web-guidance) */
+.table-wrapper {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  container-type: inline-size;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  font-size: 0.9375rem;
+}
+
+.data-table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  background: var(--surface-muted);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table tbody td,
+.data-table tbody th {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.data-table tbody tr:last-child td,
+.data-table tbody tr:last-child th {
+  border-bottom: none;
+}
+
+@container (width < 640px) {
+  .data-table--stack,
+  .data-table--stack thead,
+  .data-table--stack tbody,
+  .data-table--stack tr,
+  .data-table--stack th,
+  .data-table--stack td {
+    display: block;
+  }
+
+  .data-table--stack thead {
+    display: none;
+  }
+
+  .data-table--stack tbody tr {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table--stack tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .data-table--stack tbody th,
+  .data-table--stack tbody td {
+    padding: 0.375rem 0;
+    border-bottom: none;
+  }
+
+  .data-table--stack tbody th {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .data-table--stack tbody td[data-label]::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+}
+
+/* Tabs selected state (WCAG 1.4.1 non-color indicator) */
+[role="tab"] {
+  position: relative;
+  flex: none;
+  scroll-snap-align: start;
+}
+
+[role="tab"][aria-selected="true"] {
+  color: var(--accent);
+}
+
+[role="tab"][aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  border-block-end: 3px solid var(--accent);
+}

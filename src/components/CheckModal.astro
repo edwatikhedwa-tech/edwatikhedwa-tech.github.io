@@ -1,0 +1,105 @@
+---
+import LeadForm from './LeadForm.astro';
+---
+
+<dialog id="check-modal" closedby="any" aria-labelledby="check-modal-title">
+  <div class="p-6 sm:p-8">
+    <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
+      <div>
+        <h2 id="check-modal-title" class="text-xl font-bold text-slate-900">
+          Запросить проверку или консультацию
+        </h2>
+        <p class="mt-1 text-sm text-slate-600">
+          Специалист офиса в Санкт-Петербурге оценит базовые риски и подготовит смету с разбивкой пошлин 2026 года.
+        </p>
+      </div>
+      <button
+        type="button"
+        command="close"
+        commandfor="check-modal"
+        data-close-modal
+        aria-label="Закрыть окно"
+        class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-5">
+      <LeadForm
+        formId="modal-lead-form"
+        goalId="goal_form_modal_submit"
+        showDirectionSelector={true}
+        submitLabel="Отправить запрос"
+      />
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('check-modal') as HTMLDialogElement | null;
+  if (dialog) {
+    // Fallback for browsers without native commandfor / invoker commands
+    if (!('commandForElement' in HTMLButtonElement.prototype)) {
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement | null;
+        const openBtn = target?.closest('[command="show-modal"][commandfor="check-modal"]');
+        if (openBtn) {
+          dialog.showModal();
+          return;
+        }
+        const closeBtn = target?.closest('[command="close"][commandfor="check-modal"]');
+        if (closeBtn) {
+          dialog.close();
+        }
+      });
+    }
+
+    // Fallback for browsers without <dialog closedby="any"> (e.g. Safari)
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      const outside = (e: PointerEvent, el: HTMLDialogElement) => {
+        const r = el.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      let pressedOutside = false;
+      dialog.addEventListener('pointerdown', (e) => {
+        pressedOutside = outside(e, dialog);
+      });
+      dialog.addEventListener('pointerup', (e) => {
+        if (pressedOutside && outside(e, dialog)) dialog.close();
+      });
+    }
+
+    // Track modal open goal
+    document.querySelectorAll('[data-open-check-modal]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('ym-goal', { detail: { goalId: 'goal_open_check_modal' } }));
+      });
+    });
+
+    // Listen for custom open-check-modal events (e.g. from Calculator)
+    window.addEventListener('open-check-modal', ((e: CustomEvent) => {
+      const detail = e.detail || {};
+      const form = dialog.querySelector('form') as HTMLFormElement | null;
+      if (form) {
+        if (detail.goalId) form.dataset.goalId = detail.goalId;
+        if (detail.prefillTask) {
+          const taskEl = form.querySelector('textarea[name="task"]') as HTMLTextAreaElement | null;
+          if (taskEl) taskEl.value = detail.prefillTask;
+        }
+        if (detail.direction) {
+          const dirRadio = form.querySelector(`input[name="direction"][value="${detail.direction}"]`) as HTMLInputElement | null;
+          if (dirRadio) dirRadio.checked = true;
+        }
+      }
+      if (!dialog.open) dialog.showModal();
+      window.dispatchEvent(new CustomEvent('ym-goal', { detail: { goalId: 'goal_open_check_modal' } }));
+    }) as EventListener);
+
+    dialog.addEventListener('close', () => {
+      dialog.returnValue = '';
+    });
+  }
+</script>

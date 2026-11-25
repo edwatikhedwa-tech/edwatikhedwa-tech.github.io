@@ -1,0 +1,57 @@
+{
+  "brandName": "BeBrand",
+  "regionName": "Санкт-Петербург",
+  "fullBrandTitle": "BeBrand — Офис в Санкт-Петербурге",
+  "siteUrl": "https://spb.bebrand-office.ru",
+  "ymCounterId": "",
+  "leadEndpoint": "",
+  "contacts": {
+    "phoneDisplay": "+7 (812) 000-00-00",
+    "phoneHref": "+78120000000",
+    "email": "spb@bebrand-office.ru",
+    "telegramUrl": "https://t.me/bebrand_spb",
+    "maxUrl": "",
+    "postalCode": "191025",
+    "city": "Санкт-Петербург",
+    "streetAddress": "Невский проспект (точный адрес офиса уточняется до публикации)",
+    "metro": "Площадь Восстания / Маяковская",
+    "workingHours": "Пн–Пт: 09:00–18:00 (очные встречи по записи)",
+    "openingHoursIso": "Mo-Fr 09:00-18:00",
+    "mapCoords": [59.9311, 30.3609]
+  },
+  "legal": {
+    "entityName": "Офис представительства BeBrand в Санкт-Петербурге (реквизиты вносятся до релиза)",
+    "inn": "Уточняется до публикации",
+    "kpp": "",
+    "ogrn": "Уточняется до публикации",
+    "legalAddress": "г. Санкт-Петербург (уточняется до публикации)",
+    "edoOperator": "Диадок / СБИС (уточняется)",
+    "contractModel": "Договор с региональным представительством BeBrand в Санкт-Петербурге; правовая экспертиза и делопроизводство в ФИПС выполняются головным юридическим центром ООО «БизБренд»."
+  },
+  "spbLead": {
+    "name": "Руководитель офиса в Санкт-Петербурге",
+    "role": "Руководитель представительства BeBrand в Санкт-Петербурге",
+    "bio": "Личные встречи и консультации в Санкт-Петербурге, аудит задач бизнеса в СПб и ЛО, договорное сопровождение и контроль сроков со стороны клиента.",
+    "photo": ""
+  },
+  "prices": {
+    "isReference": true,
+    "note": "Федеральный ориентир BeBrand; точный прайс-лист офиса СПб утверждается до публикации",
+    "trademarkStandard": 39900,
+    "trademarkAccelerated": 46000,
+    "trademarkRenewal": 20000,
+    "trademarkInternational": 70000,
+    "industrialDesign": 50000,
+    "utilityModel": 60000,
+    "softwareEvm": 30000,
+    "franchiseContract": 20000,
+    "licenseContract": 25000,
+    "annulment": 35000
+  },
+  "insurance": {
+    "enabled": false,
+    "amount": "10 000 000 ₽",
+    "company": "СК «АльфаСтрахование»",
+    "policyUrl": ""
+  }
+}

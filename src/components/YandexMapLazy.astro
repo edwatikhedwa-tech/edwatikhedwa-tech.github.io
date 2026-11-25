@@ -1,0 +1,45 @@
+---
+import siteConfig from '../data/site-config.json';
+
+const [lat, lon] = siteConfig.contacts.mapCoords;
+const yandexMapUrl = `https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=15&pt=${lon}%2C${lat}%2Cpm2blm`;
+---
+
+<div
+  data-lazy-map={yandexMapUrl}
+  class="relative h-[320px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 sm:h-[360px]"
+>
+  <div data-map-placeholder class="flex h-full flex-col items-center justify-center p-6 text-center">
+    <p class="text-sm font-semibold text-slate-800">Карта проезда: {siteConfig.contacts.city}</p>
+    <p class="mt-1 text-xs text-slate-600">{siteConfig.contacts.streetAddress}</p>
+    <p class="mt-2 text-xs text-slate-500">Загрузка интерактивной карты Яндекс…</p>
+  </div>
+</div>
+
+<script>
+  const mapContainers = document.querySelectorAll<HTMLElement>('[data-lazy-map]');
+  if (mapContainers.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const src = el.dataset.lazyMap;
+          if (!src || el.querySelector('iframe')) return;
+
+          const iframe = document.createElement('iframe');
+          iframe.src = src;
+          iframe.title = 'Карта расположения офиса BeBrand в Санкт-Петербурге';
+          iframe.loading = 'lazy';
+          iframe.className = 'h-full w-full border-0';
+          iframe.referrerPolicy = 'no-referrer-when-downgrade';
+          el.innerHTML = '';
+          el.appendChild(iframe);
+          observer.unobserve(el);
+        });
+      },
+      { rootMargin: '200px' }
+    );
+    mapContainers.forEach((el) => observer.observe(el));
+  }
+</script>

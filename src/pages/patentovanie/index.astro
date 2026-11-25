@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import siteConfig from '../../data/site-config.json';
+import { formatRub } from '../../data/calculator';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Как устроена оплата поддержания патента в силе и что будет при просрочке?',
+    answer:
+      'Первые 5 лет действия уже включены в пошлину за регистрацию (10 000 ₽ по базовой ставке). Начиная с 6-го года пошлины оплачиваются блоками по 5 лет в последний год предыдущего периода. При просрочке действует льготный 6-месячный период с надбавкой 50%, а после прекращения действия возможно восстановление патента с пошлиной в размере 2,5 годовой ставки.',
+  },
+  {
+    question: 'Можно ли преобразовать заявку на изобретение в полезную модель?',
+    answer:
+      'Да. До публикации сведений о заявке на изобретение или до принятия решения о выдаче либо отказе заявитель вправе преобразовать её в заявку на полезную модель (ст. 1379 ГК РФ; пошлина за рассмотрение ходатайства — 2 000 ₽).',
+  },
+  {
+    question: 'Как защитить дизайн упаковки на маркетплейсах, если товарный знак уже есть?',
+    answer:
+      'Товарный знак охраняет название и логотип, а оригинальную форму флакона, коробки, этикетки или изделия защищает патент на промышленный образец. В связке они перекрывают копирование внешнего вида товара под другим названием.',
+  },
+  {
+    question: 'На что обратить внимание, если разработку создал штатный инженер?',
+    answer:
+      'Для служебных изобретений, полезных моделей и промышленных образцов критично корректно оформлять служебные задания, передачу прав работодателю и выплату авторского вознаграждения в соответствии с актуальными Правилами Правительства РФ (в том числе Постановлением Правительства РФ от 30.05.2026 № 654).',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Патентование', item: `${siteConfig.siteUrl}/patentovanie/` },
+      ],
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Патентование изобретений, полезных моделей и промышленных образцов',
+      provider: { '@type': 'LegalService', name: siteConfig.fullBrandTitle, url: `${siteConfig.siteUrl}/` },
+      areaServed: ['Санкт-Петербург', 'Ленинградская область'],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Патентование в Санкт-Петербурге: изобретения, полезные модели, промобразцы | BeBrand"
+  description="Получение патента в Роспатенте через офис BeBrand в СПб: патентный поиск, составление формулы и описания, оформление льгот по пошлинам для малого бизнеса (−65%) и авторов (−75%)."
+  canonicalPath="/patentovanie/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Патентование' }]} />
+
+    <section class="max-w-4xl">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Патентование изобретений, полезных моделей и промышленных образцов в Санкт-Петербурге
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Помогаем производственным компаниям, инженерам и дизайнерам закреплять исключительные права на технические решения
+        и внешний вид изделий. Подбираем корректный вид патента, проводим российский и международный патентный поиск,
+        составляем формулу с максимальным объёмом охраны и оформляем законные льготы по пошлинам Роспатента.
+      </p>
+      <a href="#patent-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 no-underline">
+        Обсудить объект патентования (под NDA)
+      </a>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-slate-900">Сравнение видов патентов в России</h2>
+      <div tabindex="0" role="region" aria-label="Сравнение видов патентов" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Критерий</th>
+              <th>Изобретение</th>
+              <th>Полезная модель</th>
+              <th>Промышленный образец</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Что охраняет</th>
+              <td data-label="Изобретение">Техническое решение (устройство, способ, вещество, технология, ПАК).</td>
+              <td data-label="Полезная модель">Техническое решение, относящееся исключительно к устройству (конструкции изделия).</td>
+              <td data-label="Промобразец">Внешний вид изделия: форма, упаковка, принт, комплект изделий, графический интерфейс сайта.</td>
+            </tr>
+            <tr>
+              <th scope="row">Критерии патентоспособности</th>
+              <td data-label="Изобретение">Новизна, изобретательский уровень, промышленная применимость.</td>
+              <td data-label="Полезная модель">Новизна и промышленная применимость (изобретательский уровень не требуется).</td>
+              <td data-label="Промобразец">Новизна и оригинальность.</td>
+            </tr>
+            <tr>
+              <th scope="row">Максимальный срок охраны</th>
+              <td data-label="Изобретение">20 лет (для отдельных категорий, включая лекарства и агрохимию, — продление до 25 лет).</td>
+              <td data-label="Полезная модель">10 лет (без продления для заявок после 01.01.2015).</td>
+              <td data-label="Промобразец">До 25 лет (5 лет + продление пятилетними периодами).</td>
+            </tr>
+            <tr>
+              <th scope="row">Минимальные пошлины (общие / МСП / 1 автор)</th>
+              <td data-label="Изобретение" class="tabular-nums font-medium">28 000 ₽ / 9 800 ₽ / 7 000 ₽</td>
+              <td data-label="Полезная модель" class="tabular-nums font-medium">15 000 ₽ / 5 250 ₽ / 3 750 ₽</td>
+              <td data-label="Промобразец" class="tabular-nums font-medium">15 000 ₽ / 5 250 ₽ / 3 750 ₽</td>
+            </tr>
+            <tr>
+              <th scope="row">Ориентир услуг бюро</th>
+              <td data-label="Изобретение" class="font-semibold">По расчёту сложности</td>
+              <td data-label="Полезная модель" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.utilityModel)}</td>
+              <td data-label="Промобразец" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.industrialDesign)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-slate-900">Льготы по патентным пошлинам для малого бизнеса (−65%) и авторов (−75%)</h2>
+      <p class="mt-3 text-base text-slate-600">
+        По Приложению № 2 к Положению о пошлинах (в ред. от 23.09.2025) субъекты малого предпринимательства (ООО и ИП из
+        реестра МСП ФНС со статусом микро- или малого предприятия) платят 35% базовой ставки, а единственный автор —
+        физическое лицо — 25%. Льгота оформляется специальным ходатайством с подтверждающей выпиской из реестра ФНС.
+      </p>
+      <div tabindex="0" role="region" aria-label="Таблица льгот по патентным пошлинам" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Объект и стадия (Приложение № 2)</th>
+              <th>Базовая ставка</th>
+              <th>Малый бизнес (35%)</th>
+              <th>Единственный автор (25%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Изобретение: подача и формальная экспертиза (≤10 п., п. 1.1)</th>
+              <td data-label="Базовая" class="tabular-nums">4 000 ₽ (+1 000 ₽/п. &gt;10)</td>
+              <td data-label="Малый бизнес" class="tabular-nums font-semibold text-blue-700">1 400 ₽ (+350 ₽/п. &gt;10)</td>
+              <td data-label="1 автор" class="tabular-nums font-semibold text-emerald-700">1 000 ₽ (+250 ₽/п. &gt;10)</td>
+            </tr>
+            <tr>
+              <th scope="row">Изобретение: экспертиза по существу (1 незав. п., п. 1.8)</th>
+              <td data-label="Базовая" class="tabular-nums">14 000 ₽ (+10 000 ₽/незав. п.)</td>
+              <td data-label="Малый бизнес" class="tabular-nums font-semibold text-blue-700">4 900 ₽ (+3 500 ₽/незав. п.)</td>
+              <td data-label="1 автор" class="tabular-nums font-semibold text-emerald-700">3 500 ₽ (+2 500 ₽/незав. п.)</td>
+            </tr>
+            <tr>
+              <th scope="row">Полезная модель / Промобразец: подача (≤10 п. / 1 обр., п. 1.2, 1.3)</th>
+              <td data-label="Базовая" class="tabular-nums">2 000 ₽ (+1 000 ₽ доп.)</td>
+              <td data-label="Малый бизнес" class="tabular-nums font-semibold text-blue-700">700 ₽ (+350 ₽ доп.)</td>
+              <td data-label="1 автор" class="tabular-nums font-semibold text-emerald-700">500 ₽ (+250 ₽ доп.)</td>
+            </tr>
+            <tr>
+              <th scope="row">Полезная модель / Промобразец: экспертиза (п. 1.9, 1.10)</th>
+              <td data-label="Базовая" class="tabular-nums">3 000 ₽ (+2 500 ₽/доп. ПО)</td>
+              <td data-label="Малый бизнес" class="tabular-nums font-semibold text-blue-700">1 050 ₽ (+455 ₽/доп. ПО)</td>
+              <td data-label="1 автор" class="tabular-nums font-semibold text-emerald-700">750 ₽ (+325 ₽/доп. ПО)</td>
+            </tr>
+            <tr>
+              <th scope="row">Регистрация, электронный патент и 1–5 годы поддержания (п. 1.17)</th>
+              <td data-label="Базовая" class="tabular-nums">10 000 ₽ (+3 000 ₽ бум.)</td>
+              <td data-label="Малый бизнес" class="tabular-nums font-semibold text-blue-700">3 500 ₽</td>
+              <td data-label="1 автор" class="tabular-nums font-semibold text-emerald-700">2 500 ₽</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-sm text-slate-600">
+        Поддержание патента в силе с 6-го года оплачивается единовременно за пятилетние блоки: по базовой ставке 23 000 ₽
+        за 6–10 годы, 52 000 ₽ за 11–15 годы, 78 000 ₽ за 16–20 годы и 135 000 ₽ за 21–25 годы.
+      </p>
+    </section>
+
+    <section class="mt-12 grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6">
+        <h2 class="text-xl font-bold text-slate-900">Патентный поиск, чистота и зарубежное патентование</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          Сопровождаем патентный поиск по уровню техники до инвестирования в заявку, патентные исследования по ГОСТ и
+          проверку патентной чистоты перед запуском серии или экспортом, подачу международных заявок (PCT и ЕАПО), а также
+          контроль пятилетних интервалов поддержания патента в силе.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6">
+        <h2 class="text-xl font-bold text-slate-900">Профильный патентный поверенный</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          <strong>Наталья Сергеева</strong> — Патентный поверенный РФ № 2150, руководитель подразделения оформления
+          патентов BeBrand, стаж 15 лет.
+        </p>
+        <p class="mt-3 text-xs text-slate-500">
+          Порядок работы: подписание NDA → патентный поиск → составление формулы и описания → электронная подача в ФИПС →
+          ответы на запросы экспертизы → получение патента.
+        </p>
+      </div>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+
+    <section id="patent-form" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <LeadForm
+        formId="patent-lead-form"
+        goalId="goal_form_patent_submit"
+        title="Запросить оценку патентоспособности (под NDA)"
+        subtitle="До передачи чертежей, описаний или образцов подписываем соглашение о конфиденциальности."
+        submitLabel="Запросить оценку под NDA"
+        taskLabel="Краткое описание разработки или изделия"
+      />
+      <div class="mt-6 flex flex-wrap gap-4 border-t border-slate-200 pt-5 text-sm">
+        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline">Цены и пошлины →</a>
+        <a href="/tovarnye-znaki/" class="font-semibold text-blue-700 hover:underline">Товарные знаки →</a>
+        <a href="/programmy-evm-i-reestr-po/" class="font-semibold text-blue-700 hover:underline">Программы ЭВМ и Реестр ПО →</a>
+        <a href="/dogovory-i-franshiza/" class="font-semibold text-blue-700 hover:underline">Договоры и франшиза →</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

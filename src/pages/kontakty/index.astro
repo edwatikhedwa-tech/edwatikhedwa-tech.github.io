@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import YandexMapLazy from '../../components/YandexMapLazy.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import siteConfig from '../../data/site-config.json';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Нужно ли приезжать в офис лично для подачи заявки в Роспатент?',
+    answer:
+      'Нет. Подача в ФИПС полностью электронная, а договор и закрывающие документы можно подписать как при личной встрече в Санкт-Петербурге, так и удалённо через ЭДО.',
+  },
+  {
+    question: 'Что подготовить к первой консультации?',
+    answer:
+      'Достаточно названия или логотипа (для товарного знака), краткого описания конструкции или софта (для патента/ЭВМ) и перечня основных товаров или услуг.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Контакты', item: `${siteConfig.siteUrl}/kontakty/` },
+      ],
+    },
+    {
+      '@type': 'LegalService',
+      name: siteConfig.fullBrandTitle,
+      url: `${siteConfig.siteUrl}/`,
+      telephone: siteConfig.contacts.phoneHref,
+      email: siteConfig.contacts.email,
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'RU',
+        addressRegion: 'Санкт-Петербург',
+        addressLocality: siteConfig.contacts.city,
+        postalCode: siteConfig.contacts.postalCode,
+        streetAddress: siteConfig.contacts.streetAddress,
+      },
+      openingHours: siteConfig.contacts.openingHoursIso,
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Контакты офиса BeBrand в Санкт-Петербурге — адрес, телефон, схема проезда"
+  description="Адрес, телефон, время работы и реквизиты офиса патентного бюро BeBrand в Санкт-Петербурге. Запись на очную или онлайн-консультацию по защите интеллектуальной собственности."
+  canonicalPath="/kontakty/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Контакты' }]} />
+
+    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+      Контакты офиса BeBrand в Санкт-Петербурге
+    </h1>
+
+    <div class="mt-8 grid items-start gap-8 lg:grid-cols-12">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:col-span-5">
+        <address class="space-y-4 text-base not-italic text-slate-700">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Адрес офиса</p>
+            <p class="mt-1 font-medium text-slate-900">
+              {siteConfig.contacts.postalCode}, Россия, г. {siteConfig.contacts.city}, {siteConfig.contacts.streetAddress}
+            </p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Как добраться</p>
+            <p class="mt-1">Ближайшая станция метро: {siteConfig.contacts.metro}</p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Телефон</p>
+            <p class="mt-1">
+              <a href={`tel:${siteConfig.contacts.phoneHref}`} data-ym-goal="goal_click_phone" class="text-lg font-bold text-blue-700 hover:underline no-underline tabular-nums">
+                {siteConfig.contacts.phoneDisplay}
+              </a>
+            </p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Email</p>
+            <p class="mt-1">
+              <a href={`mailto:${siteConfig.contacts.email}`} data-ym-goal="goal_click_email" class="text-blue-700 hover:underline no-underline">
+                {siteConfig.contacts.email}
+              </a>
+            </p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Мессенджеры</p>
+            <p class="mt-1">
+              <a href={siteConfig.contacts.telegramUrl} target="_blank" rel="noopener noreferrer" data-ym-goal="goal_click_messenger" class="font-medium text-blue-700 hover:underline no-underline">
+                Telegram офиса в Санкт-Петербурге
+              </a>
+            </p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Режим работы</p>
+            <p class="mt-1 text-sm">{siteConfig.contacts.workingHours}</p>
+            <p class="mt-1 text-xs text-slate-500">Сб, Вс — выходной (онлайн-заявки принимаем круглосуточно).</p>
+          </div>
+        </address>
+      </div>
+
+      <div class="lg:col-span-7">
+        <YandexMapLazy />
+      </div>
+    </div>
+
+    <section class="mt-12 grid gap-8 lg:grid-cols-12">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:col-span-7">
+        <LeadForm
+          formId="contacts-lead-form"
+          goalId="goal_form_contacts_submit"
+          title="Записаться на встречу в офисе или онлайн-консультацию"
+          showMeetingFormat={true}
+          submitLabel="Записаться на консультацию"
+        />
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:col-span-5">
+        <h2 class="text-xl font-bold text-slate-900">Юридические реквизиты для договоров и ЭДО</h2>
+        <dl class="mt-4 space-y-3 text-sm text-slate-700">
+          <div class="border-b border-slate-100 pb-2">
+            <dt class="text-xs text-slate-500">Наименование</dt>
+            <dd class="font-medium text-slate-900">{siteConfig.legal.entityName}</dd>
+          </div>
+          <div class="border-b border-slate-100 pb-2">
+            <dt class="text-xs text-slate-500">ИНН</dt>
+            <dd class="font-medium tabular-nums">{siteConfig.legal.inn}</dd>
+          </div>
+          <div class="border-b border-slate-100 pb-2">
+            <dt class="text-xs text-slate-500">ОГРН / ОГРНИП</dt>
+            <dd class="font-medium tabular-nums">{siteConfig.legal.ogrn}</dd>
+          </div>
+          <div class="border-b border-slate-100 pb-2">
+            <dt class="text-xs text-slate-500">Юридический адрес</dt>
+            <dd>{siteConfig.legal.legalAddress}</dd>
+          </div>
+          <div>
+            <dt class="text-xs text-slate-500">Оператор ЭДО</dt>
+            <dd>{siteConfig.legal.edoOperator}</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FeeCalculator from '../../components/FeeCalculator.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import siteConfig from '../../data/site-config.json';
+import { formatRub } from '../../data/calculator';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Можно ли подать одновременно название и логотип в одной заявке?',
+    answer:
+      'Да, это комбинированный товарный знак. Однако если вы планируете менять дизайн логотипа или использовать название отдельно в тексте и на вывеске, во многих случаях надёжнее защищать словесное обозначение самостоятельно — оптимальный вариант подбираем после проверки.',
+  },
+  {
+    question: 'С какого момента действует приоритет и когда можно ставить знак ®?',
+    answer:
+      'Дата приоритета закрепляется в день подачи заявки (подтверждается Формой 940), а предупредительная маркировка ® используется законно только после внесения товарного знака в Государственный реестр и получения свидетельства.',
+  },
+  {
+    question: 'Что делать, если Роспатент направил предварительный отказ?',
+    answer:
+      'Предварительный отказ (уведомление о результатах проверки) — это рабочий этап экспертизы, а не окончательный отказ. В установленный срок подаётся аргументированный ответ, корректируется перечень товаров, запрашивается письмо-согласие правообладателя или инициируется аннулирование мешающего «спящего» знака.',
+  },
+  {
+    question: 'Нужно ли заказывать бумажное свидетельство?',
+    answer:
+      'Электронное свидетельство с усиленной квалифицированной подписью Роспатента имеет полную юридическую силу для судов, маркетплейсов и контрагентов и не требует доплаты. Бумажный бланк выдаётся по желанию за дополнительную пошлину 3 000 ₽.',
+  },
+  {
+    question: 'Действует ли сейчас скидка 30% на пошлины за электронную подачу?',
+    answer:
+      'Нет, 30-процентная скидка отменена с 5 октября 2024 года Постановлением Правительства РФ от 18.09.2024 № 1278. Электронная подача остаётся предпочтительной благодаря скорости делопроизводства и мгновенной фиксации даты приоритета.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Регистрация товарного знака', item: `${siteConfig.siteUrl}/tovarnye-znaki/` },
+      ],
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Регистрация товарного знака в Роспатенте',
+      provider: { '@type': 'LegalService', name: siteConfig.fullBrandTitle, url: `${siteConfig.siteUrl}/` },
+      areaServed: ['Санкт-Петербург', 'Ленинградская область'],
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'RUB',
+        price: siteConfig.prices.trademarkStandard,
+        description: 'Стоимость услуг без учёта государственных пошлин Роспатента',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Регистрация товарного знака в Санкт-Петербурге — цены и пошлины 2026 | BeBrand"
+  description="Регистрация товарного знака в Роспатенте через офис BeBrand в СПб: проверка по базам ФИПС, подбор классов МКТУ без переплаты по ПП № 1459, подача и сопровождение до свидетельства. Топ-2 IRPA 2026."
+  canonicalPath="/tovarnye-znaki/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Товарные знаки' }]} />
+
+    <section class="max-w-4xl">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Регистрация товарного знака в Санкт-Петербурге
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Сопровождаем государственную регистрацию словесных, изобразительных и комбинированных обозначений в Роспатенте для
+        ООО, ИП и физических лиц (включая самозанятых). Проверяем бренд по открытым и закрытым базам заявок ФИПС,
+        оптимизируем перечень товаров и услуг МКТУ под актуальные пошлины 2026 года и ведём делопроизводство до выдачи свидетельства.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#tm-form" class="inline-flex min-h-[48px] items-center rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 no-underline">
+          Проверить название и рассчитать бюджет
+        </a>
+        <a href="#calculator" class="inline-flex min-h-[48px] items-center rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 no-underline">
+          Калькулятор пошлин 2026 ↓
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <h2 class="text-2xl font-bold text-slate-900">Какие задачи бизнеса закрывает свидетельство в 2026 году</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        <div class="rounded-xl bg-slate-50 p-5 border border-slate-200">
+          <h3 class="font-bold text-slate-900">1. Законные вывески и сайты (168-ФЗ)</h3>
+          <p class="mt-2 text-sm text-slate-700">
+            Ст. 10.1 Закона о защите прав потребителей (действует с 1 марта 2026 года в ред. Закона № 168-ФЗ) прямо выводит
+            зарегистрированные товарные знаки из-под требования обязательной русификации вывесок, упаковки и сайтов.
+          </p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-5 border border-slate-200">
+          <h3 class="font-bold text-slate-900">2. Защита на Wildberries и Ozon (289-ФЗ)</h3>
+          <p class="mt-2 text-sm text-slate-700">
+            Ozon принимает документы только на словесные или комбинированные знаки, а Закон № 289-ФЗ (с 01.10.2026) и
+            Постановление КС РФ № 39-П дают правообладателю прямой механизм приостановки карточек нарушителей.
+          </p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-5 border border-slate-200">
+          <h3 class="font-bold text-slate-900">3. Компенсация до 10 млн ₽ (ст. 1252.1 ГК РФ)</h3>
+          <p class="mt-2 text-sm text-slate-700">
+            Закон № 214-ФЗ с 4 января 2026 года увеличил предельный размер твёрдой компенсации за нарушение исключительного
+            права на товарный знак до 10 000 000 ₽.
+          </p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-5 border border-slate-200">
+          <h3 class="font-bold text-slate-900">4. Основа для франшизы (ст. 1027 ГК РФ)</h3>
+          <p class="mt-2 text-sm text-slate-700">
+            Действующее свидетельство на товарный знак — обязательное условие заключения и регистрации договора
+            коммерческой концессии в Роспатенте.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-slate-900">Форматы регистрации и государственные пошлины в 2026 году</h2>
+      <div tabindex="0" role="region" aria-label="Форматы регистрации товарного знака" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Формат работы</th>
+              <th>Состав услуг бюро</th>
+              <th>Срок / регламент</th>
+              <th>Услуги бюро (ориентир)*</th>
+              <th>Госпошлины (1 кл., ≤10 поз., эл. свид.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Стандартная регистрация под ключ</th>
+              <td data-label="Состав услуг">Проверка по базам ФИПС, подбор МКТУ, электронная подача заявки, ответы на запросы экспертизы, получение свидетельства.</td>
+              <td data-label="Срок">6–9 месяцев</td>
+              <td data-label="Услуги бюро" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.trademarkStandard)}</td>
+              <td data-label="Госпошлины" class="tabular-nums">35 000 ₽ (17 000 ₽ при подаче + 18 000 ₽ после решения)</td>
+            </tr>
+            <tr>
+              <th scope="row">Ускоренная регистрация</th>
+              <td data-label="Состав услуг">Всё из стандарта + организация 10-дневного поиска ФИПС по 45 классам и ходатайство об ускорении рассмотрения.</td>
+              <td data-label="Срок">2–3 месяца</td>
+              <td data-label="Услуги бюро" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.trademarkAccelerated)}</td>
+              <td data-label="Госпошлины" class="tabular-nums">35 000 ₽ пошлины + 104 000 ₽ (слово/лого) или 208 000 ₽ (комбинир.) тариф ФИПС с НДС 22%</td>
+            </tr>
+            <tr>
+              <th scope="row">Международная регистрация</th>
+              <td data-label="Состав услуг">Подача по Мадридской системе (на базе российской заявки/знака) либо через зарубежных поверенных по национальной процедуре.</td>
+              <td data-label="Срок">12–18 мес. (Мадрид) / 4–18 мес. (нац.)</td>
+              <td data-label="Услуги бюро" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.trademarkInternational)}</td>
+              <td data-label="Госпошлины" class="tabular-nums">Пошлина Роспатента (от 5 000 ₽) + сборы ВОИС (от 653 CHF) / нац. ведомств</td>
+            </tr>
+            <tr>
+              <th scope="row">Продление знака (на 10 лет)</th>
+              <td data-label="Состав услуг">Аудит перечня МКТУ (удаление неиспользуемых позиций ради экономии по ПП № 1459), подача заявления о продлении и контроль реестра.</td>
+              <td data-label="Срок">Подача в последний год (или 6 мес. доп. срок)</td>
+              <td data-label="Услуги бюро" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.trademarkRenewal)}</td>
+              <td data-label="Госпошлины" class="tabular-nums">22 000 ₽ (до 5 кл., ≤10 поз./кл.) + 2 000 ₽/кл. &gt;5 + 500 ₽/поз. &gt;10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-sm text-slate-600">
+        Доплата за каждый дополнительный класс МКТУ при подаче — 3 500 ₽, а за каждое наименование товара или услуги
+        сверх 10 в одном классе — 500 ₽. При включении 50 позиций в один класс госпошлина возрастает с 35 000 ₽ до 55 000 ₽.
+      </p>
+    </section>
+
+    <div class="mt-12">
+      <FeeCalculator headingId="tm-calc-heading" />
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-slate-900">На чём бизнес теряет деньги при самостоятельной подаче</h2>
+      <div tabindex="0" role="region" aria-label="Сравнение самостоятельной подачи и работы с BeBrand" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Этап</th>
+              <th>Самостоятельная подача</th>
+              <th>Работа с BeBrand СПб</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Проверка сходства</th>
+              <td data-label="Самостоятельно">Открытые сервисы часто не охватывают поданные, но ещё не зарегистрированные заявки и фонетическое/семантическое сходство.</td>
+              <td data-label="С BeBrand СПб">Экспертная проверка по зарегистрированным знакам и поданным заявкам с правовым анализом по ст. 1483 ГК РФ.</td>
+            </tr>
+            <tr>
+              <th scope="row">Перечень МКТУ</th>
+              <td data-label="Самостоятельно">Копирование всего класса «про запас» ведёт к переплате +500 ₽ за каждую позицию сверх 10.</td>
+              <td data-label="С BeBrand СПб">Точный подбор формулировок под текущую деятельность и планы масштабирования.</td>
+            </tr>
+            <tr>
+              <th scope="row">Уведомление экспертизы (предотказ)</th>
+              <td data-label="Самостоятельно">Пропуск процессуального срока или слабый ответ приводят к отказу; уплаченные пошлины (от 17 000 ₽) не возвращаются.</td>
+              <td data-label="С BeBrand СПб">Профильный отдел готовит мотивированный ответ, письма-согласия или правовую позицию для преодоления отказа.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-slate-900">Ответственный руководитель практики</h2>
+      <p class="mt-2 text-base text-slate-700">
+        <strong>Екатерина Каранаева</strong> — Патентный поверенный РФ № 2149, руководитель подразделения по регистрации
+        товарных знаков и программ для ЭВМ федерального центра BeBrand (в связке с координатором офиса в Санкт-Петербурге).
+      </p>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+
+    <section id="tm-form" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <LeadForm
+        formId="tm-lead-form"
+        goalId="goal_form_tm_submit"
+        title="Запросить проверку обозначения в СПб"
+        subtitle="Укажите название бренда и основные товары или услуги — проверим риски отказа и подберём классы МКТУ."
+        submitLabel="Проверить товарный знак"
+        taskLabel="Название / обозначение и виды товаров или услуг"
+      />
+      <div class="mt-6 flex flex-wrap gap-4 border-t border-slate-200 pt-5 text-sm">
+        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline">Цены и пошлины 2026 →</a>
+        <a href="/dogovory-i-franshiza/" class="font-semibold text-blue-700 hover:underline">Договоры и франшиза →</a>
+        <a href="/zashchita-i-spory/" class="font-semibold text-blue-700 hover:underline">Защита и споры →</a>
+        <a href="/patentovanie/" class="font-semibold text-blue-700 hover:underline">Патентование →</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

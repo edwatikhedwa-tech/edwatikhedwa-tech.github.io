@@ -1,0 +1,252 @@
+---
+import '../styles/global.css';
+import siteConfig from '../data/site-config.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CheckModal from '../components/CheckModal.astro';
+import CookieNotice from '../components/CookieNotice.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  robots?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  robots = 'index, follow',
+  jsonLd,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, siteConfig.siteUrl).toString();
+const ogImageUrl = new URL('/og-image.svg', siteConfig.siteUrl).toString();
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    {siteConfig.ymCounterId && (
+      <script is:inline define:vars={{ ymId: Number(siteConfig.ymCounterId) }}>
+        window.YM_COUNTER_ID = ymId;
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(ymId, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+      </script>
+    )}
+  </head>
+  <body>
+    <a href="#main-content" class="visually-hidden focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-lg focus:bg-blue-700 focus:px-4 focus:py-2 focus:text-white">
+      Перейти к основному содержанию
+    </a>
+
+    <Header currentPath={canonicalPath} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+    <CheckModal />
+    <CookieNotice />
+
+    <script>
+      // Global Yandex Metrika goal dispatcher
+      const reachGoal = (goalId: string) => {
+        if (!goalId) return;
+        const w = window as unknown as { ym?: (...args: unknown[]) => void; YM_COUNTER_ID?: number };
+        if (typeof w.ym === 'function' && w.YM_COUNTER_ID) {
+          w.ym(w.YM_COUNTER_ID, 'reachGoal', goalId);
+        }
+      };
+
+      window.addEventListener('ym-goal', ((e: CustomEvent) => {
+        if (e.detail?.goalId) reachGoal(e.detail.goalId);
+      }) as EventListener);
+
+      // Contact click goals
+      document.addEventListener('click', (e) => {
+        const el = (e.target as HTMLElement | null)?.closest('[data-ym-goal]') as HTMLElement | null;
+        if (el?.dataset.ymGoal) {
+          reachGoal(el.dataset.ymGoal);
+        }
+      });
+
+      // Accessible form validation + ARIA sync + AJAX submit (modern-web-guidance)
+      const announcer = document.createElement('div');
+      announcer.setAttribute('aria-live', 'polite');
+      announcer.className = 'visually-hidden';
+      document.body.append(announcer);
+      let announceTimer: number | undefined;
+
+      const linkError = (el: HTMLElement, shown: boolean) => {
+        const errorId = el.dataset.error;
+        if (!errorId) return;
+        const ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter((id) => id && id !== errorId);
+        if (shown) ids.push(errorId);
+        if (ids.length) el.setAttribute('aria-describedby', ids.join(' '));
+        else el.removeAttribute('aria-describedby');
+      };
+
+      const syncFieldAria = (el: EventTarget | null, announce = false) => {
+        if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement)) return;
+        if (el.name === 'website_hp') return;
+
+        const supportsUserInvalid = CSS.supports('selector(:user-invalid)');
+        const isInvalid = supportsUserInvalid ? el.matches(':user-invalid') : !el.validity.valid && el.classList.contains('user-invalid-fallback');
+
+        if (!supportsUserInvalid && el.dataset.touched === 'true') {
+          el.classList.toggle('user-invalid-fallback', !el.validity.valid);
+          el.classList.toggle('user-valid-fallback', el.validity.valid);
+        }
+
+        const nowInvalid = supportsUserInvalid ? el.matches(':user-invalid') : !el.validity.valid && el.dataset.touched === 'true';
+
+        if (nowInvalid) {
+          el.setAttribute('aria-invalid', 'true');
+          linkError(el, true);
+          if (announce && el.dataset.error) {
+            const errEl = document.getElementById(el.dataset.error);
+            if (errEl) {
+              clearTimeout(announceTimer);
+              announcer.textContent = '';
+              announceTimer = window.setTimeout(() => {
+                announcer.textContent = errEl.textContent?.trim() || '';
+              }, 350);
+            }
+          }
+        } else {
+          el.setAttribute('aria-invalid', 'false');
+          linkError(el, false);
+        }
+      };
+
+      document.querySelectorAll<HTMLFormElement>('[data-lead-form]').forEach((form) => {
+        form.querySelectorAll('input, textarea, select').forEach((field) => {
+          if (field instanceof HTMLElement && field.getAttribute('name') !== 'website_hp') {
+            field.setAttribute('aria-invalid', 'false');
+          }
+        });
+
+        form.addEventListener('blur', (e) => {
+          const target = e.target as HTMLElement;
+          if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+            target.dataset.touched = 'true';
+            syncFieldAria(target, true);
+          }
+        }, true);
+
+        form.addEventListener('input', (e) => {
+          syncFieldAria(e.target, false);
+        });
+
+        form.addEventListener('change', (e) => {
+          const target = e.target as HTMLElement;
+          if (target instanceof HTMLInputElement) {
+            target.dataset.touched = 'true';
+            syncFieldAria(target, true);
+          }
+        });
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          // Honeypot check
+          const hp = form.querySelector<HTMLInputElement>('input[name="website_hp"]');
+          if (hp && hp.value.trim() !== '') return;
+
+          const controls = Array.from(form.elements).filter(
+            (el): el is HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement =>
+              (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) &&
+              el.name !== 'website_hp'
+          );
+
+          let firstInvalid: HTMLElement | null = null;
+          for (const control of controls) {
+            control.dataset.touched = 'true';
+            if (!control.checkValidity()) {
+              control.classList.add('user-invalid-fallback');
+              control.setAttribute('aria-invalid', 'true');
+              linkError(control, true);
+              if (!firstInvalid) firstInvalid = control;
+            } else {
+              control.classList.remove('user-invalid-fallback');
+              control.setAttribute('aria-invalid', 'false');
+              linkError(control, false);
+            }
+          }
+
+          if (firstInvalid) {
+            firstInvalid.focus();
+            return;
+          }
+
+          const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+          if (submitBtn) submitBtn.disabled = true;
+
+          const action = form.getAttribute('action') || '#lead-submit';
+          let ok = false;
+
+          if (action === '#lead-submit') {
+            // Pre-release prototype mode until real leadEndpoint is connected in site-config.json
+            await new Promise((r) => setTimeout(r, 250));
+            ok = true;
+          } else {
+            try {
+              const res = await fetch(action, {
+                method: 'POST',
+                body: new FormData(form),
+              });
+              ok = res.ok;
+            } catch {
+              ok = false;
+            }
+          }
+
+          if (submitBtn) submitBtn.disabled = false;
+
+          if (ok) {
+            const goalId = form.dataset.goalId || '';
+            reachGoal(goalId);
+            const successBox = form.querySelector<HTMLElement>('[data-form-success]');
+            if (successBox) successBox.hidden = false;
+            form.reset();
+            controls.forEach((c) => {
+              delete c.dataset.touched;
+              c.classList.remove('user-invalid-fallback', 'user-valid-fallback');
+              c.setAttribute('aria-invalid', 'false');
+              linkError(c, false);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

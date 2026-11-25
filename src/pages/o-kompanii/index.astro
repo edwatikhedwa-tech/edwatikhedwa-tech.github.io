@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TeamSection from '../../components/TeamSection.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import siteConfig from '../../data/site-config.json';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'С кем именно заключается договор при обращении в петербургский офис?',
+    answer: siteConfig.legal.contractModel,
+  },
+  {
+    question: 'Как проверить квалификацию патентных поверенных?',
+    answer:
+      'Регистрационные номера патентных поверенных РФ (№ 2149, № 2150, № 2314) открыты для проверки в официальном Реестре патентных поверенных на сайте Роспатента.',
+  },
+  {
+    question: 'Работаете ли вы с компаниями из Ленинградской области и СЗФО?',
+    answer:
+      'Да. Вся переписка с Роспатентом ведётся электронно, поэтому мы принимаем клиентов как очно в офисе в Санкт-Петербурге, так и дистанционно с обменом документами через ЭДО.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'О компании', item: `${siteConfig.siteUrl}/o-kompanii/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Об офисе BeBrand в Санкт-Петербурге — федеральный центр и команда поверенных"
+  description="Представительство федеральной сети BeBrand в Санкт-Петербурге: как устроена работа офиса и головного юридического центра, рейтинги IRPA 2026 и Роспатента, аттестованные патентные поверенные."
+  canonicalPath="/o-kompanii/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'О компании' }]} />
+
+    <section class="max-w-4xl">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Офис BeBrand в Санкт-Петербурге и федеральная практика защиты ИС
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Петербургский офис представляет федеральную сеть агентств по разработке и защите брендов BeBrand, работающую с
+        2013 года и объединяющую, по данным сети, более 50 представительств и свыше 30 000 клиентов по России. Мы
+        объединяем личную встречу и разбор бизнес-модели в Санкт-Петербурге с исполнением всех процедур в Роспатенте, ППС
+        и судах профильными подразделениями головного юридического центра.
+      </p>
+    </section>
+
+    <section class="mt-12 grid gap-6 md:grid-cols-3">
+      <article class="rounded-2xl border border-slate-200 bg-white p-6">
+        <p class="text-2xl font-extrabold text-blue-700 tabular-nums">2-е место в России</p>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Рейтинг IRPA 2026</p>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          4 103 зарегистрированных товарных знака и доля 5,77% в коммерческом сегменте по независимому рейтингу IRPA
+          (методология по фактически выданным свидетельствам ФИПС).
+        </p>
+        <a
+          href="https://irpa-rating.com/bizbrand"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          class="mt-4 inline-block text-xs font-semibold text-blue-700 hover:underline"
+        >
+          Карточка в рейтинге IRPA →
+        </a>
+      </article>
+
+      <article class="rounded-2xl border border-slate-200 bg-white p-6">
+        <p class="text-2xl font-extrabold text-slate-900 tabular-nums">1-е место по подаче</p>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Роспатент (2020–I пол. 2022)</p>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          Лидерство ООО «БизБренд» по объёму электронной подачи заявок на товарные знаки среди патентных поверенных:
+          2 195 заявок в 2020 г., 3 759 в 2021 г., 1 667 в I пол. 2022 г.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-200 bg-white p-6">
+        <p class="text-2xl font-extrabold text-slate-900">IT-контроль сроков</p>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Электронный документооборот</p>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          По данным BeBrand, собственная IT-система делопроизводства автоматически отслеживает процессуальные сроки и
+          уведомления ФИПС, снижая риск технических ошибок.
+        </p>
+      </article>
+    </section>
+
+    <div class="mt-8">
+      <TeamSection />
+    </div>
+
+    <section class="mt-8 grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6">
+        <h2 class="text-xl font-bold text-slate-900">Стандарты работы и конфиденциальность</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          Работа опирается на три принципа: честная предварительная оценка рисков (не подаём заведомо отказные заявки ради
+          комиссии), разделение гонорара и госпошлин до подписания договора, строгий режим конфиденциальности (NDA) —
+          чувствительные технологические и корпоративные проекты не публикуются без письменного разрешения клиента.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6">
+        <h2 class="text-xl font-bold text-slate-900">Юридические сведения</h2>
+        <dl class="mt-3 space-y-2 text-sm text-slate-700">
+          <div><dt class="inline font-semibold">Организация:</dt> <dd class="inline">{siteConfig.legal.entityName}</dd></div>
+          <div><dt class="inline font-semibold">ИНН:</dt> <dd class="inline tabular-nums">{siteConfig.legal.inn}</dd></div>
+          <div><dt class="inline font-semibold">ОГРН:</dt> <dd class="inline tabular-nums">{siteConfig.legal.ogrn}</dd></div>
+          <div><dt class="inline font-semibold">Адрес:</dt> <dd class="inline">{siteConfig.legal.legalAddress}</dd></div>
+        </dl>
+        <a href="/kontakty/" class="mt-4 inline-block text-sm font-semibold text-blue-700 hover:underline">
+          Контакты и реквизиты →
+        </a>
+      </div>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <LeadForm
+        formId="about-lead-form"
+        goalId="goal_form_contacts_submit"
+        title="Записаться на консультацию в офисе или онлайн"
+        showMeetingFormat={true}
+        submitLabel="Записаться на консультацию"
+      />
+    </section>
+  </div>
+</BaseLayout>

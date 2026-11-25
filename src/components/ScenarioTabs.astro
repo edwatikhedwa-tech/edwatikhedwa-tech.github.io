@@ -1,0 +1,182 @@
+---
+const scenarios = [
+  {
+    id: 'marketplaces',
+    label: 'Маркетплейсы и СТМ',
+    title: 'Защита карточек и брендов на Wildberries, Ozon и Яндекс Маркете',
+    text: 'С 1 октября 2026 года действует Закон № 289-ФЗ о платформенной экономике, а Постановление КС РФ № 39-П закрепило обязанность площадок приостанавливать спорные карточки при обоснованном обращении правообладателя. Ozon принимает документы на бренд только при наличии словесного или комбинированного товарного знака. Мы регистрируем бренд в нужных классах МКТУ, патентуем форму товара и упаковки как промышленный образец и помогаем законно снять карточки нарушителей через «Цифровой арбитраж» и претензионную процедуру.',
+    tools: ['Товарный знак (стандартный или ускоренный)', 'Промышленный образец упаковки', 'Блокировка контрафакта по 289-ФЗ'],
+    links: [
+      { label: 'Регистрация товарного знака →', href: '/tovarnye-znaki/' },
+      { label: 'Защита и споры на маркетплейсах →', href: '/zashchita-i-spory/' },
+    ],
+  },
+  {
+    id: 'horeca',
+    label: 'Общепит, ритейл и франшизы',
+    title: 'Легальные вывески по 168-ФЗ и юридически чистая франшиза',
+    text: 'С 1 марта 2026 года Закон № 168-ФЗ обязал размещать публичную информацию для потребителей (вывески, меню, сайты) на русском языке; исключение предусмотрено для зарегистрированных товарных знаков и фирменных наименований юрлиц, но не распространяется на незарегистрированные коммерческие обозначения и названия новых ЖК застройщиков. При масштабировании франшизы договор коммерческой концессии подлежит обязательной регистрации в Роспатенте (ст. 1027 ГК РФ). Проводим аудит прав между юрлицами сети, регистрируем знаки и договоры концессии под ключ.',
+    tools: ['Регистрация ТЗ (латиница / кириллица / логотип)', 'Договор коммерческой концессии в ФИПС', 'Отчуждение и лицензии внутри группы компаний'],
+    links: [
+      { label: 'Договоры и франшиза →', href: '/dogovory-i-franshiza/' },
+      { label: 'Регистрация товарного знака →', href: '/tovarnye-znaki/' },
+    ],
+  },
+  {
+    id: 'manufacturing',
+    label: 'Производство и инженерия',
+    title: 'Патентная монополия на устройства, технологии и внешний вид изделий',
+    text: 'Без патента конкуренты вправе законно воспроизводить конструкцию, рецептуру или дизайн серийного продукта. Мы проводим патентный поиск и проверку патентной чистоты, выбираем оптимальный объект охраны (изобретение до 20 лет, полезная модель на 10 лет или промышленный образец до 25 лет) и готовим ходатайство на законное снижение пошлин: субъекты малого предпринимательства (микро- и малые предприятия, ИП из реестра МСП) платят 35% базовой ставки, а единственные авторы — 25%.',
+    tools: ['Патент на изобретение, полезную модель, промобразец', 'Проверка патентной чистоты по ГОСТ', 'Оформление льгот малого бизнеса (−65%)'],
+    links: [
+      { label: 'Патентование в СПб →', href: '/patentovanie/' },
+      { label: 'Цены и таблица льгот →', href: '/tseny-i-poshliny/' },
+    ],
+  },
+  {
+    id: 'it',
+    label: 'IT-компании и разработчики ПО',
+    title: 'Регистрация кода в Роспатенте и включение в Реестр российского ПО',
+    text: 'Государственная регистрация программы для ЭВМ или базы данных (единая пошлина 5 000 ₽) закрепляет правообладателя для инвесторов, заказчиков и судов. Включение продукта в Единый реестр российского ПО Минцифры открывает право на освобождение реализации ПО от НДС (пп. 26 п. 2 ст. 149 НК РФ) и поддерживает налоговый режим аккредитованных IT-компаний (ставка налога на прибыль 5% в 2026 году, пониженные страховые взносы).',
+    tools: ['Свидетельство Роспатента на ЭВМ и БД', 'Подготовка пакета для Реестра Минцифры', 'Договоры с разработчиками и подрядчиками'],
+    links: [
+      { label: 'Программы ЭВМ и Реестр ПО →', href: '/programmy-evm-i-reestr-po/' },
+      { label: 'Договоры на разработку →', href: '/dogovory-i-franshiza/' },
+    ],
+  },
+];
+---
+
+<section aria-labelledby="scenarios-heading" class="py-14 sm:py-16">
+  <div class="max-w-3xl">
+    <h2 id="scenarios-heading" class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+      Какие задачи бизнеса мы решаем в 2026 году
+    </h2>
+    <p class="mt-3 text-base text-slate-600">
+      Выберите отраслевой сценарий Санкт-Петербурга и Ленинградской области, чтобы увидеть актуальные правовые инструменты.
+    </p>
+  </div>
+
+  <div class="mt-8 rounded-2xl border border-slate-200 bg-white shadow-xs" data-scenario-tabs>
+    <div
+      role="tablist"
+      focusgroup="tablist nomemory"
+      aria-label="Отраслевые сценарии бизнеса"
+      class="flex overflow-x-auto border-b border-slate-200 px-2 sm:px-4"
+    >
+      {scenarios.map((tab, idx) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${tab.id}`}
+          aria-selected={idx === 0 ? 'true' : 'false'}
+          tabindex={idx === 0 ? 0 : -1}
+          focusgroupstart={idx === 0 ? '' : undefined}
+          data-tab-target={`panel-${tab.id}`}
+          class="min-h-[52px] whitespace-nowrap px-4 py-3.5 text-sm font-semibold text-slate-600 hover:text-slate-900 cursor-pointer"
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="grid">
+      {scenarios.map((tab, idx) => (
+        <div
+          id={`panel-${tab.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${tab.id}`}
+          tabindex={idx === 0 ? 0 : undefined}
+          hidden={idx !== 0 ? 'until-found' : undefined}
+          class="col-start-1 row-start-1"
+        >
+          <div class="grid gap-8 p-6 sm:p-8 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <h3 class="text-xl font-bold text-slate-900">{tab.title}</h3>
+              <p class="mt-3 text-base leading-relaxed text-slate-700">{tab.text}</p>
+            </div>
+            <div class="flex flex-col justify-between rounded-xl border border-slate-200 bg-slate-50 p-5 lg:col-span-5">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Инструменты защиты</p>
+                <ul class="mt-3 space-y-2.5 text-sm font-medium text-slate-800">
+                  {tab.tools.map((tool) => (
+                    <li class="flex items-start gap-2">
+                      <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-blue-700" aria-hidden="true"></span>
+                      <span>{tool}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mt-6 flex flex-col gap-2 border-t border-slate-200 pt-4">
+                {tab.links.map((link) => (
+                  <a href={link.href} class="text-sm font-semibold text-blue-700 hover:text-blue-800 no-underline">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.querySelector('[data-scenario-tabs]');
+  if (container) {
+    const tabs = Array.from(container.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(container.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+
+    const selectTab = (selectedTab: HTMLButtonElement, moveFocus = false) => {
+      const targetId = selectedTab.dataset.tabTarget;
+      tabs.forEach((tab) => {
+        const isSelected = tab === selectedTab;
+        tab.setAttribute('aria-selected', String(isSelected));
+        tab.tabIndex = isSelected ? 0 : -1;
+        tab.toggleAttribute('focusgroupstart', isSelected);
+      });
+      panels.forEach((panel) => {
+        const isTarget = panel.id === targetId;
+        if (isTarget) {
+          panel.removeAttribute('hidden');
+          panel.tabIndex = 0;
+        } else {
+          panel.setAttribute('hidden', 'until-found');
+          panel.removeAttribute('tabindex');
+        }
+      });
+      selectedTab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      if (moveFocus) selectedTab.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        selectTab(tab);
+        window.dispatchEvent(new CustomEvent('ym-goal', { detail: { goalId: 'goal_scenario_tab' } }));
+      });
+
+      // Keyboard arrow navigation fallback for browsers without native focusgroup
+      tab.addEventListener('keydown', (e) => {
+        let nextIndex = -1;
+        if (e.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') nextIndex = 0;
+        else if (e.key === 'End') nextIndex = tabs.length - 1;
+
+        if (nextIndex !== -1) {
+          e.preventDefault();
+          selectTab(tabs[nextIndex], true);
+        }
+      });
+    });
+
+    // Reveal matching tab when user uses browser Find-in-Page (beforematch)
+    panels.forEach((panel) => {
+      panel.addEventListener('beforematch', () => {
+        const tab = tabs.find((t) => t.dataset.tabTarget === panel.id);
+        if (tab) selectTab(tab);
+      });
+    });
+  }
+</script>

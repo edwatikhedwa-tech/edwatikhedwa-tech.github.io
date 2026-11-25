@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FeeCalculator from '../../components/FeeCalculator.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import siteConfig from '../../data/site-config.json';
+import { formatRub } from '../../data/calculator';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Возвращаются ли госпошлины, если Роспатент откажет в регистрации?',
+    answer:
+      'Нет. Роспатент взимает пошлины за рассмотрение заявки и проведение экспертизы, поэтому при отказе бюджетные средства не возвращаются. Качественная предварительная проверка до подачи защищает именно этот бюджет.',
+  },
+  {
+    question: 'Почему на некоторых сайтах до сих пор обещают скидку 30% на пошлины?',
+    answer:
+      'Это устаревшая информация: 30-процентная льгота при электронной подаче отменена с 5 октября 2024 года Постановлением Правительства РФ от 18.09.2024 № 1278.',
+  },
+  {
+    question: 'Кому положены льготы по пошлинам в 2026 году?',
+    answer:
+      'По Приложению № 2 к Положению о пошлинах субъекты малого предпринимательства (выписка из реестра МСП ФНС) платят 35% базовой ставки по основным патентным действиям, а единственные авторы — 25%. На товарные знаки льготы малого бизнеса не распространяются.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Цены и пошлины 2026', item: `${siteConfig.siteUrl}/tseny-i-poshliny/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+
+const priceRows = [
+  {
+    action: 'Регистрация товарного знака (стандарт, 1 кл., ≤10 поз.)',
+    fee: '35 000 ₽ (17 000 ₽ при подаче + 18 000 ₽ после решения; +3 500 ₽/доп. кл.; +500 ₽/поз. >10; +3 000 ₽ бумажное свид.)',
+    bureau: `от ${formatRub(siteConfig.prices.trademarkStandard)}`,
+  },
+  {
+    action: 'Ускоренная регистрация ТЗ (2–3 мес.)',
+    fee: 'Пошлины от 35 000 ₽ + тариф ФИПС 104 000 ₽ (слово/лого) или 208 000 ₽ (комбинир., вкл. НДС 22%)',
+    bureau: `от ${formatRub(siteConfig.prices.trademarkAccelerated)}`,
+  },
+  {
+    action: 'Продление ТЗ на 10 лет',
+    fee: '22 000 ₽ (до 5 кл., ≤10 поз./кл.) + 2 000 ₽/кл. >5 + 500 ₽/поз. >10',
+    bureau: `от ${formatRub(siteConfig.prices.trademarkRenewal)}`,
+  },
+  {
+    action: 'Международная регистрация ТЗ',
+    fee: 'От 5 000 ₽ (Роспатент, до 3 кл.) + сборы ВОИС от 653 CHF',
+    bureau: `от ${formatRub(siteConfig.prices.trademarkInternational)}`,
+  },
+  {
+    action: 'Патент на изобретение (1 незав. пункт, ≤10 п.)',
+    fee: 'Общая: 28 000 ₽ · Малый бизнес: 9 800 ₽ · 1 автор: 7 000 ₽ (эл. патент + 1–5 годы)',
+    bureau: 'По расчёту сложности',
+  },
+  {
+    action: 'Патент на полезную модель (≤10 п.)',
+    fee: 'Общая: 15 000 ₽ · Малый бизнес: 5 250 ₽ · 1 автор: 3 750 ₽ (эл. патент + 1–5 годы)',
+    bureau: `от ${formatRub(siteConfig.prices.utilityModel)}`,
+  },
+  {
+    action: 'Патент на промышленный образец (1 вариант)',
+    fee: 'Общая: 15 000 ₽ · Малый бизнес: 5 250 ₽ · 1 автор: 3 750 ₽ (эл. патент + 1–5 годы)',
+    bureau: `от ${formatRub(siteConfig.prices.industrialDesign)}`,
+  },
+  {
+    action: 'Регистрация программы для ЭВМ / БД',
+    fee: '5 000 ₽ (единая ставка для юрлиц и физлиц, ст. 333.30 НК РФ)',
+    bureau: `от ${formatRub(siteConfig.prices.softwareEvm)}`,
+  },
+  {
+    action: 'Включение в Реестр российского ПО Минцифры',
+    fee: 'Не взимается',
+    bureau: 'По расчёту состава ПО',
+  },
+  {
+    action: 'Договор коммерческой концессии (франшиза)',
+    fee: '4 000 ₽ + 13 000 ₽ за ТЗ + 4 000 ₽ за патент (17 000 ₽ за 1 ТЗ)',
+    bureau: `от ${formatRub(siteConfig.prices.franchiseContract)}`,
+  },
+  {
+    action: 'Лицензионный договор / Отчуждение ТЗ',
+    fee: '15 000 ₽ (+13 000 ₽ за каждый доп. ТЗ; +3 000 ₽ бум. свид. при отчуждении)',
+    bureau: `от ${formatRub(siteConfig.prices.licenseContract)}`,
+  },
+  {
+    action: 'Аннулирование ТЗ (ликвидация / неиспользование)',
+    fee: 'Пошлина ППС / суда по категории спора',
+    bureau: `от ${formatRub(siteConfig.prices.annulment)}`,
+  },
+];
+---
+
+<BaseLayout
+  title="Цены на патентные услуги и пошлины Роспатента 2026 | BeBrand СПб"
+  description="Прозрачный прайс-лист офиса BeBrand в Санкт-Петербурге и актуальная таблица государственных пошлин Роспатента на 2026 год: товарные знаки, патенты (льготы малого бизнеса), программы ЭВМ, договоры."
+  canonicalPath="/tseny-i-poshliny/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Цены и пошлины 2026' }]} />
+
+    <section class="max-w-4xl">
+      <span class="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">
+        Актуально на ноябрь 2026 года
+      </span>
+      <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Цены на услуги и государственные пошлины Роспатента (2026)
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Мы разделяем две составляющие бюджета: вознаграждение бюро за юридическую работу и обязательные государственные
+        пошлины, которые оплачиваются напрямую в бюджет по реквизитам Роспатента (ФИПС). Общий бюджет и состав работ
+        фиксируются в договоре до оплаты.
+      </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-bold text-slate-900">Сводная таблица стоимости и пошлин 2026 года</h2>
+      <div tabindex="0" role="region" aria-label="Прайс-лист и пошлины 2026" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Юридическое действие / Услуга</th>
+              <th>Государственная пошлина / Тариф ФИПС (2026)</th>
+              <th>Гонорар бюро (ориентир)*</th>
+            </tr>
+          </thead>
+          <tbody>
+            {priceRows.map((row) => (
+              <tr>
+                <th scope="row">{row.action}</th>
+                <td data-label="Госпошлина / Тариф ФИПС" class="tabular-nums text-slate-700">{row.fee}</td>
+                <td data-label="Гонорар бюро" class="font-semibold text-slate-900 tabular-nums whitespace-nowrap">{row.bureau}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-slate-500">
+        * {siteConfig.prices.note}.
+      </p>
+    </section>
+
+    <div class="mt-12">
+      <FeeCalculator headingId="price-calc-heading" />
+    </div>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-slate-900">Порядок оплаты и закрывающие документы</h2>
+      <p class="mt-3 text-sm leading-relaxed text-slate-700">
+        Работаем по официальному договору с безналичным расчётом для ООО и ИП (договор, счёт, акт выполненных работ) и
+        оплатой для физических лиц. Государственные пошлины оплачиваются поэтапно по платёжным поручениям с точными
+        реквизитами Роспатента, которые готовит наш специалист.
+      </p>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <LeadForm
+        formId="price-lead-form"
+        goalId="goal_form_price_submit"
+        title="Запросить точную смету под вашу задачу"
+        showDirectionSelector={true}
+        submitLabel="Получить смету"
+      />
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import siteConfig from '../../data/site-config.json';
+import { formatRub } from '../../data/calculator';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Можно ли оформить договор франшизы, если товарный знак ещё на регистрации?',
+    answer:
+      'Зарегистрировать договор коммерческой концессии в Роспатенте можно только при наличии действующего свидетельства на товарный знак. Пока заявка проходит экспертизу, компании оформляют лицензионный договор на передачу секрета производства (ноу-хау) с последующим переходом на концессию.',
+  },
+  {
+    question: 'Какие обязательные условия нужно согласовать для договора коммерческой концессии?',
+    answer:
+      'В договоре фиксируются предмет (комплекс передаваемых прав), территория и срок, размер и порядок уплаты паушального взноса и роялти, обязанности сторон по контролю качества и поддержке, ответственность и защита коммерческой тайны.',
+  },
+  {
+    question: 'Сколько времени занимает регистрация лицензионного договора или концессии в Роспатенте?',
+    answer:
+      'Средний срок государственной регистрации распоряжения правом в Роспатенте составляет около 2 месяцев с момента подачи комплектного пакета документов и оплаты пошлины.',
+  },
+  {
+    question: 'Почему оплаты счёта дизайнеру недостаточно для владения логотипом или фото?',
+    answer:
+      'Оплата услуг по разработке сама по себе не подтверждает переход исключительного права заказчику без корректно оформленного авторского договора и акта передачи. При споре автор сохраняет право требовать запрета использования и компенсации.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Договоры и франшиза', item: `${siteConfig.siteUrl}/dogovory-i-franshiza/` },
+      ],
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Разработка и регистрация договоров с интеллектуальной собственностью',
+      provider: { '@type': 'LegalService', name: siteConfig.fullBrandTitle, url: `${siteConfig.siteUrl}/` },
+      areaServed: ['Санкт-Петербург', 'Ленинградская область'],
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'RUB',
+        price: siteConfig.prices.franchiseContract,
+        description: 'Стоимость услуг без учёта государственных пошлин Роспатента',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Договоры с ИС в СПб: франшиза, лицензии, отчуждение, регистрация в ФИПС | BeBrand"
+  description="Разработка и регистрация в Роспатенте договоров коммерческой концессии (франшизы), лицензионных договоров и договоров отчуждения товарных знаков, патентов и ПО в Санкт-Петербурге."
+  canonicalPath="/dogovory-i-franshiza/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Договоры и франшиза' }]} />
+
+    <section class="max-w-4xl">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Договоры на интеллектуальную собственность: франшиза, лицензии и передача прав
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Составляем договоры распоряжения исключительными правами и регистрируем предоставление или переход прав в
+        Роспатенте. Помогаем петербургским сетям юридически корректно упаковывать франшизы, наводить порядок в правах
+        между юрлицами холдинга и фиксировать авторские права на контент, рецептуры и дизайн.
+      </p>
+      <a href="#contracts-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 no-underline">
+        Обсудить договор или аудит франшизы
+      </a>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-slate-900">Пять ключевых видов сделок и государственные пошлины 2026 года</h2>
+      <div tabindex="0" role="region" aria-label="Виды договоров и пошлины 2026" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Вид договора / услуги</th>
+              <th>Когда требуется бизнесу</th>
+              <th>Регистрация в ФИПС</th>
+              <th>Госпошлина Роспатента (2026)</th>
+              <th>Ориентир услуг бюро*</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Коммерческая концессия (франшиза)</th>
+              <td data-label="Когда требуется">Передача партнёру комплекса прав: товарного знака, коммерческого опыта и ноу-хау за паушальный взнос и роялти (ст. 1027 ГК РФ).</td>
+              <td data-label="В ФИПС">Обязательно</td>
+              <td data-label="Пошлина" class="tabular-nums">4 000 ₽ + 13 000 ₽ за каждый ТЗ + 4 000 ₽ за каждый патент (17 000 ₽ за 1 ТЗ, п. 3.17)</td>
+              <td data-label="Услуги бюро" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.franchiseContract)}</td>
+            </tr>
+            <tr>
+              <th scope="row">Лицензионный / сублицензионный договор</th>
+              <td data-label="Когда требуется">Предоставление права использовать ТЗ, патент или ПО (включая связку «ИП учредителя — операционное ООО»).</td>
+              <td data-label="В ФИПС">Обязательно для ТЗ и патентов</td>
+              <td data-label="Пошлина" class="tabular-nums">ТЗ: 15 000 ₽ (+13 000 ₽/доп. ТЗ); Патент: 4 000 ₽ (+2 000 ₽/доп.)</td>
+              <td data-label="Услуги бюро" class="font-semibold tabular-nums">от {formatRub(siteConfig.prices.licenseContract)} (ТЗ) / от 35 000 ₽ (патент)</td>
+            </tr>
+            <tr>
+              <th scope="row">Договор отчуждения (продажа прав)</th>
+              <td data-label="Когда требуется">Полная передача прав на ТЗ, патент или зарегистрированную программу другому лицу (перенос знака со старого ООО).</td>
+              <td data-label="В ФИПС">Обязательно</td>
+              <td data-label="Пошлина" class="tabular-nums">ТЗ: 15 000 ₽ (+13 000 ₽/доп. ТЗ, +3 000 ₽ бум.); Патент: 4 000 ₽; ПО: 5 000 ₽ (+2 500 ₽/доп.)</td>
+              <td data-label="Услуги бюро" class="font-semibold">По расчёту</td>
+            </tr>
+            <tr>
+              <th scope="row">Авторский договор / договор заказа</th>
+              <td data-label="Когда требуется">Переход исключительных прав от дизайнеров, фотографов, копирайтеров, разработчиков и агентств к бизнесу.</td>
+              <td data-label="В ФИПС">Не требуется</td>
+              <td data-label="Пошлина">Не взимается</td>
+              <td data-label="Услуги бюро" class="font-semibold">По расчёту</td>
+            </tr>
+            <tr>
+              <th scope="row">Депонирование авторских прав</th>
+              <td data-label="Когда требуется">Фиксация временного приоритета на тексты, курсы, фотографии карточек, макеты упаковки, рецептуры и брендбуки.</td>
+              <td data-label="В ФИПС">Реестр депонирования</td>
+              <td data-label="Пошлина">По тарифу депозитария</td>
+              <td data-label="Услуги бюро" class="font-semibold">По расчёту</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-12 grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-amber-200 bg-amber-50/50 p-6">
+        <h2 class="text-xl font-bold text-slate-900">Почему опасно держать знак на одном юрлице, а работать через другое</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          В петербургском бизнесе регулярно встречается разрыв правообладателя: товарный знак зарегистрирован на старое ООО
+          или учредителя-ИП, а фактическая выручка, аренда точек и поставки идут через новое операционное ООО без
+          зарегистрированного лицензионного договора. В случае конфликта оппонент вправе инициировать досрочное
+          прекращение охраны знака вследствие неиспользования правообладателем (ст. 1486 ГК РФ).
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6">
+        <h2 class="text-xl font-bold text-slate-900">Ключевые условия договора коммерческой концессии</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          Закрепляем все существенные блоки: состав передаваемого комплекса прав (товарный знак, стандарты, коммерческий
+          опыт и секреты производства), права и обязанности сторон, структуру паушального взноса и роялти, срок и
+          территориальные границы, условия расторжения, защиту коммерческой тайны, требования к маркетингу и обучению.
+        </p>
+      </div>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+
+    <section id="contracts-form" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <LeadForm
+        formId="contracts-lead-form"
+        goalId="goal_form_contracts_submit"
+        title="Запросить разработку или регистрацию договора"
+        submitLabel="Обсудить договор"
+        taskLabel="Вид договора и краткое описание ситуации"
+      />
+      <div class="mt-6 flex flex-wrap gap-4 border-t border-slate-200 pt-5 text-sm">
+        <a href="/tovarnye-znaki/" class="font-semibold text-blue-700 hover:underline">Товарные знаки →</a>
+        <a href="/patentovanie/" class="font-semibold text-blue-700 hover:underline">Патентование →</a>
+        <a href="/programmy-evm-i-reestr-po/" class="font-semibold text-blue-700 hover:underline">Программы ЭВМ →</a>
+        <a href="/zashchita-i-spory/" class="font-semibold text-blue-700 hover:underline">Защита и споры →</a>
+        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline">Цены и пошлины →</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

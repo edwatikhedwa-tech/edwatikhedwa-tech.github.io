@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import siteConfig from '../../data/site-config.json';
+import { formatRub } from '../../data/calculator';
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Обязательно ли отправлять претензию перед подачей иска в суд?',
+    answer:
+      'Да. Если обе стороны спора о компенсации являются организациями или ИП, досудебный претензионный порядок обязателен по п. 5.1 ст. 1252 ГК РФ; обратиться в суд можно спустя 30 дней после отправки претензии.',
+  },
+  {
+    question: 'Реально ли взыскать максимальную компенсацию 10 млн ₽?',
+    answer:
+      'Потолок твёрдой компенсации 10 млн ₽ действует с 4 января 2026 года (ст. 1252.1 ГК РФ), однако конкретную сумму суд определяет исходя из характера и доказанного объёма нарушения. Качество фиксации продаж нарушителя напрямую влияет на размер взыскания.',
+  },
+  {
+    question: 'Можно ли заблокировать конкурента на Wildberries или Ozon, если товарный знак ещё на регистрации?',
+    answer:
+      'Для подачи жалобы по товарному знаку маркетплейсы требуют действующее свидетельство о государственной регистрации (номер регистрации права), а не поданную заявку. До получения свидетельства на знак защита карточек возможна по авторскому праву (на фотографии и описания) или по патенту на промышленный образец.',
+  },
+  {
+    question: 'Как аннулировать чужой товарный знак, если компания-правообладатель ликвидирована?',
+    answer:
+      'Досрочное прекращение охраны в связи с прекращением деятельности юридического лица проводится в административном порядке через Роспатент, без длительного процесса в Суде по интеллектуальным правам.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Защита и споры', item: `${siteConfig.siteUrl}/zashchita-i-spory/` },
+      ],
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Защита интеллектуальных прав, суды, ППС, ФАС и маркетплейсы',
+      provider: { '@type': 'LegalService', name: siteConfig.fullBrandTitle, url: `${siteConfig.siteUrl}/` },
+      areaServed: ['Санкт-Петербург', 'Ленинградская область'],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Защита интеллектуальных прав в СПб: суды, ППС, ФАС, маркетплейсы | BeBrand"
+  description="Досудебная и судебная защита брендов, патентов и авторских прав в Санкт-Петербурге: блокировка контрафакта на WB и Ozon по 289-ФЗ, претензии, Палата по патентным спорам, СИП и арбитраж."
+  canonicalPath="/zashchita-i-spory/"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs items={[{ label: 'Защита и споры' }]} />
+
+    <section class="max-w-4xl">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Защита интеллектуальных прав: маркетплейсы, претензии, ППС и суды
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Представляем интересы правообладателей и защищаем бизнес от необоснованных претензий. Сопровождаем споры на
+        маркетплейсах, дела о недобросовестной конкуренции в ФАС, оспаривание решений Роспатента в Палате по патентным
+        спорам, арбитражных судах Санкт-Петербурга и Суде по интеллектуальным правам.
+      </p>
+      <a href="#dispute-form" class="mt-6 inline-flex min-h-[48px] items-center rounded-lg bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 no-underline">
+        Разобрать ситуацию с юристом
+      </a>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-slate-900">Основные категории споров и правовые инструменты 2026 года</h2>
+      <div tabindex="0" role="region" aria-label="Категории споров и правовые нормы 2026" class="table-wrapper mt-5">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th>Ситуация клиента</th>
+              <th>Правовой механизм и наши действия</th>
+              <th>Ключевые нормы и пошлины 2026 года</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Контрафакт и клоны на Wildberries, Ozon, Яндекс Маркете</th>
+              <td data-label="Действия">Фиксация карточек, контрольная закупка с видеофиксацией, жалоба через «Цифровой арбитраж» WB и поддержку Ozon, претензия продавцу и иск с обеспечительными мерами.</td>
+              <td data-label="Нормы">ФЗ от 31.07.2025 № 289-ФЗ (ч. 6 ст. 7, с 01.10.2026) и Постановление КС РФ от 16.06.2026 № 39-П (ст. 1253.1 ГК РФ).</td>
+            </tr>
+            <tr>
+              <th scope="row">Копирование вывески, домена, упаковки или товара</th>
+              <td data-label="Действия">Нотариальная фиксация доказательств, обязательная досудебная претензия (30 дней для юрлиц/ИП), обращение в ФАС, иск в арбитражный суд или суд общей юрисдикции.</td>
+              <td data-label="Нормы">Ст. 1252.1 и 1515 ГК РФ (214-ФЗ с 04.01.2026): твёрдая компенсация 10 000 – 10 млн ₽ (для патентов 50 000 – 10 млн ₽), либо 2× стоимости контрафакта/лицензии.</td>
+            </tr>
+            <tr>
+              <th scope="row">Поступила претензия или иск от правообладателя</th>
+              <td data-label="Действия">Аудит сходства и однородности, проверка знака истца на неиспользование, выработка позиции по снижению компенсации (при нарушении без осведомлённости суд вправе снизить сумму до 10–500 тыс. ₽).</td>
+              <td data-label="Нормы">Ст. 1252.1 ГК РФ, ст. 1486 ГК РФ.</td>
+            </tr>
+            <tr>
+              <th scope="row">Предварительный отказ Роспатента или оспаривание решения</th>
+              <td data-label="Действия">Мотивированный ответ на уведомление экспертизы, письма-согласия, возражение в Палату по патентным спорам (ППС) и обжалование в СИП.</td>
+              <td data-label="Нормы">Пошлины ППС: возражение на решение экспертизы ТЗ — 9 000 ₽ (п. 2.28.2); против предоставления охраны ТЗ — 14 000 ₽ (п. 2.28.4).</td>
+            </tr>
+            <tr>
+              <th scope="row">Мешает чужой «спящий» товарный знак</th>
+              <td data-label="Действия">Проверка использования знака, досудебное предложение, иск о досрочном прекращении в СИП или административное аннулирование при ликвидации юрлица-правообладателя.</td>
+              <td data-label="Нормы">Аннулирование на основании прекращения деятельности юрлица — ориентир от {formatRub(siteConfig.prices.annulment)}.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <h2 class="text-2xl font-bold text-slate-900">Алгоритм блокировки нарушителей на маркетплейсах</h2>
+      <p class="mt-3 text-sm leading-relaxed text-slate-600">
+        После Постановления КС РФ № 39-П и вступления в силу Закона № 289-ФЗ площадки обязаны приостанавливать спорные
+        карточки при обоснованной жалобе правообладателя, однако выросла и встречная ответственность: при необоснованной
+        блокировке продавец и площадка вправе требовать возмещения убытков. Поэтому защита строится строго по 5 шагам:
+      </p>
+      <ol class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 text-sm">
+        <li class="rounded-xl bg-slate-50 p-4 border border-slate-200"><strong class="block text-blue-700 mb-1">1. Фиксация</strong>Ссылки, артикулы, скриншоты с датой, реквизиты продавца, при необходимости нотариальный протокол.</li>
+        <li class="rounded-xl bg-slate-50 p-4 border border-slate-200"><strong class="block text-blue-700 mb-1">2. Закупка</strong>Контрольная закупка с видеозаписью, сохранением чеков, фото упаковки и сравнением с оригиналом.</li>
+        <li class="rounded-xl bg-slate-50 p-4 border border-slate-200"><strong class="block text-blue-700 mb-1">3. Площадка</strong>Жалоба через «Цифровой арбитраж» WB или поддержку Ozon с приложением свидетельства на ТЗ.</li>
+        <li class="rounded-xl bg-slate-50 p-4 border border-slate-200"><strong class="block text-blue-700 mb-1">4. Претензия</strong>Обязательный досудебный порядок (п. 5.1 ст. 1252 ГК РФ) — 30 дней до подачи иска.</li>
+        <li class="rounded-xl bg-slate-50 p-4 border border-slate-200"><strong class="block text-blue-700 mb-1">5. Иск и меры</strong>Изъятие и уничтожение контрафакта, взыскание компенсации до 10 млн ₽ и обеспечительные меры.</li>
+      </ol>
+    </section>
+
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-slate-900">Руководитель судебной практики</h2>
+      <p class="mt-2 text-base text-slate-700">
+        <strong>Анна Кузнецова</strong> — Патентный поверенный РФ № 2314, руководитель подразделения судебной практики BeBrand.
+      </p>
+    </section>
+
+    <div class="mt-12">
+      <FaqAccordion items={faqItems} />
+    </div>
+
+    <section id="dispute-form" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <LeadForm
+        formId="dispute-lead-form"
+        goalId="goal_form_dispute_submit"
+        title="Отправить ситуацию на правовой разбор"
+        showDirectionSelector={true}
+        directions={['Нарушают мои права', 'Мне пришла претензия', 'Отказ Роспатента']}
+        submitLabel="Разобрать ситуацию"
+        taskLabel="Краткое описание спора или номер заявки/дела"
+      />
+      <div class="mt-6 flex flex-wrap gap-4 border-t border-slate-200 pt-5 text-sm">
+        <a href="/tovarnye-znaki/" class="font-semibold text-blue-700 hover:underline">Товарные знаки →</a>
+        <a href="/patentovanie/" class="font-semibold text-blue-700 hover:underline">Патентование →</a>
+        <a href="/dogovory-i-franshiza/" class="font-semibold text-blue-700 hover:underline">Договоры и франшиза →</a>
+        <a href="/tseny-i-poshliny/" class="font-semibold text-blue-700 hover:underline">Цены и пошлины →</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

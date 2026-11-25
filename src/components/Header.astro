@@ -1,0 +1,202 @@
+---
+import siteConfig from '../data/site-config.json';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const services = [
+  {
+    href: '/tovarnye-znaki/',
+    title: 'Товарные знаки',
+    desc: 'Проверка ФИПС, МКТУ, стандартная, ускоренная и международная регистрация',
+  },
+  {
+    href: '/patentovanie/',
+    title: 'Патентование',
+    desc: 'Изобретения, полезные модели, промышленные образцы, льготы МСП −65%',
+  },
+  {
+    href: '/programmy-evm-i-reestr-po/',
+    title: 'Программы ЭВМ и Реестр ПО',
+    desc: 'Регистрация в Роспатенте (5 000 ₽) и включение в Реестр Минцифры',
+  },
+  {
+    href: '/dogovory-i-franshiza/',
+    title: 'Договоры и франшиза',
+    desc: 'Концессия, лицензии, отчуждение прав в ФИПС, авторские договоры',
+  },
+  {
+    href: '/zashchita-i-spory/',
+    title: 'Защита и споры',
+    desc: 'WB/Ozon по 289-ФЗ, предотказы, ППС, ФАС, арбитраж и СИП',
+  },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center gap-3 text-slate-900 no-underline shrink-0" aria-label="BeBrand — Офис в Санкт-Петербурге, на главную">
+      <svg class="h-9 w-9 shrink-0 text-blue-700" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <rect width="36" height="36" rx="8" fill="currentColor" />
+        <path d="M10 10h9.5a4.5 4.5 0 0 1 3.18 7.68A4.75 4.75 0 0 1 20 26H10V10Zm4 3.5v3h5a1.5 1.5 0 0 0 0-3h-5Zm0 6v3h5.5a1.5 1.5 0 0 0 0-3H14Z" fill="#fff" />
+      </svg>
+      <div class="leading-tight">
+        <span class="block text-lg font-bold tracking-tight text-slate-900">BeBrand</span>
+        <span class="block text-xs font-medium text-slate-600">Офис в Санкт-Петербурге</span>
+      </div>
+    </a>
+
+    <nav class="hidden lg:flex lg:items-center lg:gap-6" aria-label="Основная навигация">
+      <div class="relative group">
+        <button
+          type="button"
+          class="inline-flex items-center gap-1.5 py-2 text-sm font-medium text-slate-700 hover:text-blue-700 cursor-pointer"
+          aria-expanded="false"
+          aria-haspopup="true"
+          id="nav-services-btn"
+        >
+          Услуги
+          <svg class="h-4 w-4 text-slate-400 transition-transform group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div
+          id="nav-services-menu"
+          class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute left-0 top-full pt-2 w-[26rem] transition-opacity duration-150"
+        >
+          <div class="rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+            {services.map((item) => (
+              <a
+                href={item.href}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+                class:list={[
+                  'block rounded-lg px-3.5 py-2.5 no-underline transition-colors hover:bg-slate-50',
+                  currentPath === item.href ? 'bg-blue-50/70 text-blue-800' : 'text-slate-900',
+                ]}
+              >
+                <span class="block text-sm font-semibold">{item.title}</span>
+                <span class="block text-xs text-slate-600 mt-0.5">{item.desc}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="/tseny-i-poshliny/"
+        aria-current={currentPath === '/tseny-i-poshliny/' ? 'page' : undefined}
+        class:list={[
+          'py-2 text-sm font-medium no-underline transition-colors',
+          currentPath === '/tseny-i-poshliny/' ? 'text-blue-700 font-semibold' : 'text-slate-700 hover:text-blue-700',
+        ]}
+      >
+        Цены и пошлины
+      </a>
+      <a
+        href="/o-kompanii/"
+        aria-current={currentPath === '/o-kompanii/' ? 'page' : undefined}
+        class:list={[
+          'py-2 text-sm font-medium no-underline transition-colors',
+          currentPath === '/o-kompanii/' ? 'text-blue-700 font-semibold' : 'text-slate-700 hover:text-blue-700',
+        ]}
+      >
+        О компании
+      </a>
+      <a
+        href="/kontakty/"
+        aria-current={currentPath === '/kontakty/' ? 'page' : undefined}
+        class:list={[
+          'py-2 text-sm font-medium no-underline transition-colors',
+          currentPath === '/kontakty/' ? 'text-blue-700 font-semibold' : 'text-slate-700 hover:text-blue-700',
+        ]}
+      >
+        Контакты
+      </a>
+    </nav>
+
+    <div class="hidden md:flex md:items-center md:gap-4">
+      <div class="text-right leading-tight">
+        <a
+          href={`tel:${siteConfig.contacts.phoneHref}`}
+          data-ym-goal="goal_click_phone"
+          class="block text-sm font-semibold text-slate-900 hover:text-blue-700 no-underline tabular-nums"
+        >
+          {siteConfig.contacts.phoneDisplay}
+        </a>
+        <span class="block text-xs text-slate-500">Пн–Пт 09:00–18:00</span>
+      </div>
+      <button
+        type="button"
+        data-open-check-modal
+        command="show-modal"
+        commandfor="check-modal"
+        class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-blue-800 cursor-pointer"
+      >
+        Проверить обозначение
+      </button>
+    </div>
+
+    <div class="flex items-center gap-2 lg:hidden">
+      <button
+        type="button"
+        data-open-check-modal
+        command="show-modal"
+        commandfor="check-modal"
+        class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-blue-700 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-800 cursor-pointer"
+      >
+        Проверить знак
+      </button>
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-nav-panel"
+        aria-label="Открыть меню навигации"
+        class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 cursor-pointer"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav-panel" hidden class="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
+    <div class="space-y-1">
+      <p class="px-2 pt-1 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Услуги</p>
+      {services.map((item) => (
+        <a
+          href={item.href}
+          class="block rounded-lg px-2 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50 no-underline"
+        >
+          {item.title}
+        </a>
+      ))}
+      <div class="my-2 border-t border-slate-200"></div>
+      <a href="/tseny-i-poshliny/" class="block rounded-lg px-2 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50 no-underline">Цены и пошлины</a>
+      <a href="/o-kompanii/" class="block rounded-lg px-2 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50 no-underline">О компании</a>
+      <a href="/kontakty/" class="block rounded-lg px-2 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50 no-underline">Контакты</a>
+      <div class="mt-3 pt-3 border-t border-slate-200 px-2">
+        <a href={`tel:${siteConfig.contacts.phoneHref}`} data-ym-goal="goal_click_phone" class="block text-base font-semibold text-blue-700 no-underline">
+          {siteConfig.contacts.phoneDisplay}
+        </a>
+        <span class="block text-xs text-slate-500 mt-0.5">{siteConfig.contacts.workingHours}</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobilePanel = document.getElementById('mobile-nav-panel');
+  if (toggleBtn && mobilePanel) {
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!expanded));
+      mobilePanel.hidden = expanded;
+    });
+  }
+</script>
