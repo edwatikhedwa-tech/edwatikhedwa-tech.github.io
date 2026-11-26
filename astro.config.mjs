@@ -43,6 +43,7 @@ export default defineConfig({
   vite: {
     plugins: [v0PreviewProxy, tailwindcss()],
     server: {
+      allowedHosts: ['sb-3ej1vs0m6fby.vercel.run'],
       cors: {
         origin: 'https://v0.app',
       },
