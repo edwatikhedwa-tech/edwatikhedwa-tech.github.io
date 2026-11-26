@@ -35,8 +35,8 @@
     "photo": ""
   },
   "prices": {
-    "isReference": true,
-    "note": "Федеральный ориентир BeBrand; точный прайс-лист офиса СПб утверждается до публикации",
+    "isReference": false,
+    "note": "Фиксированный гонорар за этап + официальные пошлины по закону. Точная смета фиксируется до подписания договора.",
     "trademarkStandard": 39900,
     "trademarkAccelerated": 46000,
     "trademarkRenewal": 20000,

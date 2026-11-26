@@ -49,6 +49,7 @@
     color: var(--ink-primary);
     letter-spacing: -0.02em;
     line-height: 1.08;
+    text-wrap: balance;
   }
 
   h3, h4 {
@@ -56,6 +57,11 @@
     color: var(--ink-primary);
     letter-spacing: -0.015em;
     line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   :focus-visible {
@@ -141,6 +147,11 @@ dialog::backdrop {
   background-color: var(--bg-surface);
   color: var(--ink-primary);
   transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.field-input::placeholder {
+  color: #5B626E;
+  opacity: 1;
 }
 
 :is(.field-input:user-invalid, .field-input.user-invalid-fallback) {
