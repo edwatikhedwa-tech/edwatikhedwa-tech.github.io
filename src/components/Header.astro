@@ -50,7 +50,7 @@ const services = [
       </div>
     </a>
 
-    <nav class="hidden lg:flex lg:items-center lg:gap-7" aria-label="Основная навигация">
+    <nav class="hidden lg:flex lg:items-center lg:gap-4 xl:gap-7" aria-label="Основная навигация">
       <div class="relative group">
         <button
           type="button"
@@ -118,8 +118,8 @@ const services = [
       </a>
     </nav>
 
-    <div class="hidden md:flex md:items-center md:gap-5">
-      <div class="text-right leading-tight">
+    <div class="hidden md:ml-auto md:flex md:items-center md:gap-4 lg:ml-0 xl:gap-5">
+      <div class="text-right leading-tight whitespace-nowrap">
         <a
           href={`tel:${siteConfig.contacts.phoneHref}`}
           data-ym-goal="goal_click_phone"
@@ -134,7 +134,7 @@ const services = [
         data-open-check-modal
         command="show-modal"
         commandfor="check-modal"
-        class="inline-flex min-h-[44px] items-center justify-center rounded-sm bg-[#9E1B1E] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#7E1417] cursor-pointer"
+        class="hidden min-h-11 cursor-pointer items-center justify-center rounded-sm bg-[#9E1B1E] px-4 py-2 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-[#7E1417] lg:inline-flex xl:px-5"
       >
         Проверить обозначение
       </button>
@@ -155,7 +155,7 @@ const services = [
         id="mobile-menu-toggle"
         aria-expanded="false"
         aria-controls="mobile-nav-panel"
-        aria-label="Открыть меню навигации"
+        aria-label="Меню навигации"
         class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-sm border border-[#D8D3C8] bg-white text-[#121519] hover:bg-[#EDE9E0] cursor-pointer"
       >
         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">

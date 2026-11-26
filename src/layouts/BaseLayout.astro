@@ -74,6 +74,7 @@ const ogImageUrl = new URL('/og-image.png', siteConfig.siteUrl).toString();
     </a>
 
     <Header currentPath={canonicalPath} />
+    <CookieNotice />
 
     <main id="main-content">
       <slot />
@@ -81,7 +82,6 @@ const ogImageUrl = new URL('/og-image.png', siteConfig.siteUrl).toString();
 
     <Footer />
     <CheckModal />
-    <CookieNotice />
 
     <script>
       // Global Yandex Metrika goal dispatcher
