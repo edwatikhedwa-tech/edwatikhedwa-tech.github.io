@@ -212,13 +212,21 @@ const steps = [
             <div class="px-6 py-5">
               <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
                 <span>01 / Рейтинг IRPA 2026</span>
-                <span class="font-semibold text-[#9E1B1E] tabular-nums normal-case">4 103 свидетельства</span>
+                <span class="font-semibold text-[#9E1B1E] tabular-nums normal-case">4 103</span>
               </dt>
               <dd class="mt-1.5">
-                <span class="block font-display text-3xl font-semibold text-[#121519] tabular-nums">Топ-2 в России</span>
-                <span class="mt-1 block text-sm text-[#4E5560]">
-                  Доля 5,77% коммерческого сегмента по фактически выданным свидетельствам ФИПС.
-                </span>
+                <span class="block font-display text-3xl font-semibold text-[#121519] tabular-nums">2-е место в России</span>
+                <p class="mt-1 text-sm text-[#4E5560]">
+                  2-е место в рейтинге IRPA за 2026 год по числу зарегистрированных товарных знаков — 4 103.
+                </p>
+                <a
+                  href="https://irpa-rating.com/bizbrand"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  class="mt-2.5 inline-block text-xs font-semibold text-[#9E1B1E] hover:underline"
+                >
+                  Рейтинг IRPA →
+                </a>
               </dd>
             </div>
 
@@ -259,7 +267,9 @@ const steps = [
   </section>
 
   <!-- Блок 2: Маршрутизатор сценариев -->
-  <ScenarioTabs />
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <ScenarioTabs />
+  </div>
 
   <!-- Блок 3: Реестр услуг -->
   <section aria-labelledby="catalog-heading" class="bg-white py-14 sm:py-16 border-y border-[#D6DAE2]">
