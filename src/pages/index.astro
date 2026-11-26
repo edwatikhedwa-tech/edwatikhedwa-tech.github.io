@@ -164,105 +164,58 @@ const steps = [
   canonicalPath="/"
   jsonLd={jsonLd}
 >
-  <!-- Блок 1: Hero (Editorial Legal Pivot v2) -->
-  <section class="border-b border-[#D6DAE2] bg-[#F7F8FA] py-14 sm:py-20 lg:py-24">
+  <!-- Блок 1: Hero -->
+  <section aria-labelledby="hero-heading" class="border-b border-(--border-hairline) bg-(--bg-paper) py-10 sm:py-14 lg:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
-        <div class="hero-animate lg:col-span-7">
-          <h1 class="text-[2.35rem] font-semibold tracking-tight text-[#121519] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.06]">
-            Защита брендов, технологий и интеллектуальных активов в Санкт-Петербурге
+      <div class="grid items-center gap-8 md:grid-cols-12 lg:gap-12">
+        <div class="hero-animate md:col-span-7">
+          <p class="flex items-center gap-2 text-sm font-medium text-(--ink-muted)">
+            <span aria-hidden="true" class="size-1.5 shrink-0 rounded-full bg-(--accent-crimson)"></span>
+            Патентное бюро · Санкт-Петербург
+          </p>
+          <h1 id="hero-heading" class="mt-3 max-w-[16ch] text-[clamp(2.35rem,5vw,3.75rem)] leading-[1.06] font-semibold">
+            Защита брендов и технологий
           </h1>
-
-          <p class="mt-6 max-w-xl text-base leading-relaxed text-[#4E5560] sm:text-lg">
-            Защищаем интеллектуальную собственность и бренды бизнеса в Санкт-Петербурге — от предварительного аудита
-            обозначения до регистрации в Роспатенте и представительства в судах. Оцениваем риски и фиксируем точную
-            смету до начала работы.
+          <p class="mt-4 max-w-lg text-base leading-relaxed text-(--ink-muted) sm:text-lg">
+            Регистрируем товарные знаки, патентуем разработки и защищаем права в спорах. Согласуем смету до начала работы.
           </p>
 
-          <div class="mt-9 flex flex-wrap items-center gap-4">
+          <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
             <button
               type="button"
               data-open-check-modal
               command="show-modal"
               commandfor="check-modal"
-              class="inline-flex min-h-[50px] items-center justify-center rounded-sm bg-[#9E1B1E] px-7 py-3 text-base font-semibold text-white transition-colors hover:bg-[#7E1417] cursor-pointer"
+              class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-sm bg-(--accent-crimson) px-5 py-3 text-center text-base font-semibold text-(--bg-surface) hover:bg-(--accent-crimson-hover)"
             >
               Проверить знак или задачу
             </button>
-            <a
-              href="#calculator"
-              class="inline-flex min-h-[50px] items-center justify-center rounded-sm border border-[#121519] bg-white px-6 py-3 text-base font-semibold text-[#121519] transition-colors hover:bg-[#ECEEF2] no-underline"
-            >
-              Рассчитать пошлины 2026 ↓
+            <a href="#calculator" class="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-(--ink-primary) underline decoration-(--border-strong) underline-offset-4 hover:text-(--accent-crimson)">
+              Рассчитать пошлины 2026 <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
 
-        <!-- Правый документальный артефакт (без серой заглушки и вложенных скруглений) -->
-        <aside
-          class="hero-animate border border-[#121519] bg-white lg:col-span-5 shadow-[6px_6px_0_0_#D6DAE2]"
-          data-impeccable-ignore="hard-offset-shadow"
-          aria-label="Досье практики BeBrand"
-        >
-          <div class="flex items-center justify-between border-b border-[#121519] bg-[#121519] px-6 py-4 text-white">
-            <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[#ECEEF2]">
-              Досье практики · ФИПС / РФ
-            </span>
-            <span class="text-xs font-medium text-[#E5A9AA] tabular-nums">2026</span>
+        <!-- Краткая выдержка из досье; детали в блоке экспертизы -->
+        <aside aria-labelledby="hero-dossier" class="hero-animate w-full max-w-lg border border-(--border-hairline) bg-(--bg-surface) text-(--ink-primary) md:col-span-5 md:justify-self-end">
+          <div class="border-b border-(--border-hairline) px-5 py-3 sm:px-7">
+            <h2 id="hero-dossier" class="font-sans text-sm leading-snug font-semibold tracking-wide text-(--ink-muted)">
+              Досье BeBrand
+            </h2>
           </div>
-
-          <dl class="divide-y divide-[#D6DAE2]">
-            <div class="px-6 py-5">
-              <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
-                <span>01 / Объём практики в 2026 году</span>
-                <span class="font-semibold text-[#9E1B1E] tabular-nums normal-case">IRPA 2026</span>
-              </dt>
-              <dd class="mt-1.5">
-                <span class="block font-display text-3xl font-semibold text-[#121519] tabular-nums">4 103 знака</span>
-                <p class="mt-1 text-sm text-[#4E5560]">
-                  Зарегистрированных товарных знаков за год по данным независимого реестра IRPA 2026.
-                </p>
-                <a
-                  href="https://irpa-rating.com/bizbrand"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  class="mt-2.5 inline-block text-xs font-semibold text-[#9E1B1E] hover:underline"
-                >
-                  Карточка в реестре IRPA →
-                </a>
-              </dd>
-            </div>
-
-            <div class="px-6 py-5">
-              <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
-                <span>02 / Федеральный масштаб</span>
-                <span class="font-semibold text-[#121519] tabular-nums normal-case">50+ офисов</span>
-              </dt>
-              <dd class="mt-1.5">
-                <span class="block font-display text-3xl font-semibold text-[#121519] tabular-nums">С 2013 года</span>
-                <span class="mt-1 block text-sm text-[#4E5560]">
-                  Более 30 000 клиентов по России; личная ответственность офиса в Санкт-Петербурге.
-                </span>
-              </dd>
-            </div>
-
-            <div class="px-6 py-5">
-              <dt class="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-[#4E5560]">
-                <span>03 / Квалификация практики</span>
-                <span class="font-semibold text-[#9E1B1E] normal-case">Аттестованы Роспатентом</span>
-              </dt>
-              <dd class="mt-1.5">
-                <span class="block font-display text-2xl font-semibold text-[#121519]">Патентные поверенные РФ</span>
-                <span class="mt-1 block text-sm text-[#4E5560]">
-                  Профильная специализация по товарным знакам, патентам и спорам в Роспатенте и судах.
-                </span>
-              </dd>
-            </div>
-          </dl>
-
-          <div class="flex items-center justify-between border-t border-[#D6DAE2] bg-[#ECEEF2] px-6 py-3.5 text-xs font-medium text-[#121519]">
-            <span>Электронный документооборот с ФИПС</span>
-            <span class="font-semibold text-[#9E1B1E]">NDA до старта</span>
+          <div class="p-5 sm:p-7">
+            <p class="font-display text-4xl leading-none font-semibold tabular-nums lg:text-5xl">С 2013 года</p>
+            <p class="mt-2 text-sm leading-relaxed text-(--ink-muted)">
+              ООО «БизБренд» зарегистрировано 28 августа 2013 года.
+            </p>
+            <a
+              href="https://irpa-rating.com/bizbrand"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              class="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-(--accent-crimson) underline underline-offset-4 hover:text-(--accent-crimson-hover)"
+            >
+              Карточка компании в IRPA <span aria-hidden="true">↗</span><span class="sr-only"> (откроется в новой вкладке)</span>
+            </a>
           </div>
         </aside>
       </div>
@@ -344,6 +297,9 @@ const steps = [
             Петербургский офис лично отвечает за стратегию, договор и результат вашего дела — от очного разбора задачи
             до представительства в Арбитражном суде СПб и ЛО. К узкопрофильным процедурам в ФИПС, ППС и СИП
             подключаются аттестованные патентные поверенные РФ сети BeBrand.
+          </p>
+          <p class="mt-3 max-w-[68ch] text-base leading-relaxed text-[#B8BFC9]">
+            У сети BeBrand более 50 офисов и более 30 000 клиентов по России.
           </p>
 
           <ol class="mt-8 space-y-3 border-t border-[#2A3039] pt-6 text-sm text-[#D6DAE2]">
